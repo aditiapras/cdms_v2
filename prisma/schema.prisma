@@ -1,0 +1,55 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  nik       String @unique @db.VarChar(20)
+  username  String @db.VarChar(255)
+  password  String @db.VarChar(255)
+  workgroup String @db.VarChar(10)
+}
+
+model Monitoring {
+  building_mc String  @unique @db.VarChar(10)
+  id_left     String? @db.VarChar(20)
+  id_right    String? @db.VarChar(20)
+  status      String? @db.VarChar(20)
+}
+
+model Drum {
+  id_drum     String    @unique @db.VarChar(20)
+  rim         Int       @db.Int
+  type        String    @db.VarChar(5)
+  status      String?   @db.VarChar(10)
+  building_mc String?   @db.VarChar(10)
+  age         Int?
+  date_naik   DateTime? @db.DateTime()
+  date_turun  DateTime? @db.DateTime()
+  reason      String?   @db.VarChar(255)
+}
+
+model Machine {
+  building_mc String  @unique @db.VarChar(10)
+  status      String? @db.VarChar(10)
+  phase       String  @db.VarChar(10)
+}
+
+model Tub {
+  id        Int @id @default(autoincrement())
+  tub_width Int @db.Int
+}
+
+model Cleaning {
+  cleaning_id   Int      @id @default(autoincrement())
+  id_drum       String   @db.VarChar(20)
+  pic           String   @db.VarChar(255)
+  date_cleaning DateTime @db.Timestamp()
+}
