@@ -6,7 +6,9 @@ const prisma = new PrismaClient();
 
 export async function GET(req) {
   const url = new URL(req.url);
+  const building_mc = url.searchParams.get("machine");
   const id_drum = url.searchParams.get("id");
+
   if (id_drum) {
     const drum = await prisma.drum.findUnique({
       where: {
@@ -14,9 +16,17 @@ export async function GET(req) {
       },
     });
     return NextResponse.json(drum);
+  } else if (building_mc) {
+    const machine = await prisma.drum.findMany({
+      where: {
+        building_mc: building_mc,
+      },
+    });
+    return NextResponse.json(machine);
+  } else {
+    const drums = await prisma.drum.findMany();
+    return NextResponse.json(drums);
   }
-  const drums = await prisma.drum.findMany();
-  return NextResponse.json(drums);
 }
 
 export async function PUT(req) {
