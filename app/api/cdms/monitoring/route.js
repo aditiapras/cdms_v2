@@ -5,7 +5,9 @@ const prisma = new PrismaClient();
 
 export async function GET(req) {
   const url = new URL(req.url);
+
   const building_mc = url.searchParams.get("id");
+
   if (building_mc) {
     const monitoring = await prisma.monitoring.findUnique({
       where: {
