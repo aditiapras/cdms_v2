@@ -32,7 +32,7 @@ export const authOptions = {
           console.log(user);
           return {
             nik: user.nik,
-            usename: user.username,
+            username: user.username,
             workgroup: user.workgroup,
           };
         } catch (error) {
@@ -56,6 +56,7 @@ export const authOptions = {
   session: {
     strategy: "jwt",
   },
+
   secret: process.env.NEXTAUTH_SECRET,
   pages: {
     signIn: "/",
