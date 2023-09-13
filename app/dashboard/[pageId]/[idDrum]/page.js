@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 import Spinner from "@/components/ui/spinner";
 import Link from "next/link";
 import moment from "moment-timezone";
+import { unmountDrum, unmountMachine } from "@/lib/unmountHelper";
+import { redirect } from "next/navigation";
 
 export default function TurunCC({ params }) {
   const {
@@ -19,11 +21,36 @@ export default function TurunCC({ params }) {
 
   if (error) return <div>failed to load</div>;
   if (isLoading) return <Spinner />;
+  if (data.building_mc == "") {
+    redirect("/dashboard/monitoring");
+  }
 
   const age = moment().diff(moment(data.date_naik), "days") + data.age;
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (queryData) => {
+    const data = {
+      id_drum: queryData.id_drum,
+      building_mc: queryData.building_mc,
+      status: "unuse",
+      age: Number(age),
+      reason: queryData.reason,
+      method: "turun",
+    };
+    const data2 = {
+      id_drum: queryData.id_drum,
+      building_mc: "",
+      status: "unuse",
+      age: Number(age),
+      reason: queryData.reason,
+      method: "turun",
+    };
+
+    const turunDrum = await unmountDrum(data2);
+    console.log(turunDrum.data);
+
+    const turunMesin = await unmountMachine(data);
+    console.log(turunMesin);
+    router.push("/dashboard/monitoring");
   };
 
   return (
