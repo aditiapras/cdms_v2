@@ -47,7 +47,7 @@ export async function PUT(req) {
     });
 
     return NextResponse.json(naik);
-  } else {
+  } else if (method == "turun") {
     const turun = await prisma.drum.update({
       where: {
         id_drum: id_drum,
@@ -60,6 +60,11 @@ export async function PUT(req) {
         reason: reason,
       },
     });
-    return NextResponse.json(turun);
+    return NextResponse.json({
+      message: `ID Drum ${id_drum} telah diturunkan`,
+      turun,
+    });
+  } else {
+    return NextResponse.json({ message: "no method found" });
   }
 }
