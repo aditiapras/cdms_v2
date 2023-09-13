@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useFetch } from "@/lib/fetchHelper";
 import moment from "moment-timezone";
+import Spinner from "../ui/spinner";
 
 export default function CarcassDrum({ drum }) {
   const { data, error, isLoading } = useFetch(
@@ -8,14 +9,10 @@ export default function CarcassDrum({ drum }) {
   );
 
   if (error) return null;
-  if (isLoading)
-    return (
-      <p className="text-sm text-white bg-white flex items-center justify-between border rounded-lg p-2 h-12 animate-pulse">
-        No C/C Drum Mounted
-      </p>
-    );
+  if (isLoading) return <Spinner />;
 
-  const age = moment().diff(moment(data.date_naik), "days") + data.age;
+  const age =
+    moment().local().diff(moment(data.date_naik).local(), "days") + data.age;
 
   return (
     <>
