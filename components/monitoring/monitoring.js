@@ -25,8 +25,8 @@ export default function Monitoring() {
           <div key={drum.building_mc} className="flex flex-col gap-2">
             <p className="font-semibold">{drum.building_mc}</p>
             <div className="flex flex-col gap-0.5">
-              <CarcassDrum drum={drum.id_left} />
-              <CarcassDrum drum={drum.id_right} />
+              <CarcassDrum drum={drum.id_left} mesin={drum.building_mc} />
+              <CarcassDrum drum={drum.id_right} mesin={drum.building_mc} />
             </div>
           </div>
         ))}
