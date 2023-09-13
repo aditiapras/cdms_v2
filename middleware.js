@@ -8,7 +8,7 @@ export function middleware() {
   res.headers.append("Access-Control-Allow-Credentials", "true");
   res.headers.append(
     "Access-Control-Allow-Origin",
-    "http://192.168.1.104:3000"
+    "http://cdms.hankooktech.com"
   ); // replace this your actual origin
   res.headers.append(
     "Access-Control-Allow-Methods",
