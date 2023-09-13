@@ -1,8 +1,13 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]/route";
+import { redirect } from "next/navigation";
 
 export default async function Dashboard() {
   const session = await getServerSession(authOptions);
+
+  if (!session) {
+    return redirect("/");
+  }
 
   return (
     <div className="flex flex-col items-center justify-center h-full bg-zinc-100">
