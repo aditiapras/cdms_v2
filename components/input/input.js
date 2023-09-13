@@ -1,8 +1,9 @@
 "use client";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { useState } from "react";
 import Spinner from "../ui/spinner";
 import { useFetch } from "@/lib/fetchHelper";
+import Select from "react-select";
 import {
   getDrumStatus,
   getMachineStatus,
@@ -19,19 +20,30 @@ export default function InputNaik() {
   const [success, setSuccess] = useState(false);
 
   const {
-    register,
     handleSubmit,
-    resetField,
+    control,
+    reset,
     formState: { errors },
   } = useForm();
 
   const resetForm = () => {
-    resetField("id_drum");
-    resetField("building_mc");
-    resetField("tub");
+    reset({
+      id_drum: "",
+      building_mc: "",
+      tub: "",
+    });
   };
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (queryValue) => {
+    const data = {
+      id_drum: queryValue.id_drum.value,
+      building_mc: queryValue.building_mc.value,
+      tub: queryValue.tub.value,
+      status: "use",
+      method: "naik",
+    };
+    // console.log(data);
+
     const drumStatus = await getDrumStatus(data);
     const machineStatus = await getMachineStatus(data);
     const monitoringStatus = await getMonitoringStatus(data);
@@ -80,7 +92,6 @@ export default function InputNaik() {
         console.log("Use");
       }
     };
-
     if (drumStatus.status == "use") {
       setDrum(true);
       setDrumName(data.id_drum);
@@ -127,6 +138,18 @@ export default function InputNaik() {
   if (error1 || error2 || error3) return <option value="Error">Error</option>;
   if (loading1 || loading2 || loading3) return <Spinner />;
 
+  const mesin = machines.map((machine) => {
+    return { value: machine.building_mc, label: machine.building_mc };
+  });
+
+  const ccdrum = drums.map((drum) => {
+    return { value: drum.id_drum, label: drum.id_drum };
+  });
+
+  const tub = tubs.map((tub) => {
+    return { value: tub.tub_width, label: tub.tub_width };
+  });
+
   return (
     <main className="flex flex-col items-center justify-center h-full py-7 bg-zinc-100">
       <div className="">
@@ -134,27 +157,31 @@ export default function InputNaik() {
           onSubmit={handleSubmit(onSubmit)}
           className="flex flex-col gap-4 px-5 py-10 border rounded-md w-96 text-sm bg-white"
         >
-          <p className="font-semibold text-xl">Input Naik</p>
+          {/* STATUS MESSAGE SUCCESS */}
           {success && (
             <p className="bg-green-200 p-2 rounded-md text-green-700">
               Berhasil
             </p>
           )}
-          <label htmlFor="id_drum">ID Drum</label>
-          <select
-            name="id_drum"
-            id="id_drum"
-            className="p-2 rounded-md bg-zinc-100"
-            {...register("id_drum", { required: true })}
-          >
-            <option value="">Pilih ID Drum</option>
-            {drums.map((drum) => (
-              <option key={drum.id_drum} value={drum.id_drum}>
-                {drum.id_drum}
-              </option>
-            ))}
-          </select>
 
+          {/* FORM TITLE */}
+
+          <p className="font-semibold text-xl">Input Naik</p>
+
+          {/* INPUT ID DRUM */}
+          <label htmlFor="id_drum">ID Drum</label>
+          <Controller
+            name="id_drum"
+            control={control}
+            rules={{ required: true }}
+            render={({ field }) => <Select options={ccdrum} {...field} />}
+          />
+
+          {errors.id_drum && (
+            <p className="text-red-500 text-xs border border-red-500 p-2 rounded-md">
+              ID Drum belum dipilih.
+            </p>
+          )}
           {drum && (
             <p className="text-red-500 text-xs border border-red-500 p-2 rounded-md">
               ID Drum <span className="font-semibold">{drumName}</span> sudah
@@ -163,26 +190,14 @@ export default function InputNaik() {
             </p>
           )}
 
-          {errors.id_drum && (
-            <p className="text-red-500 text-xs border border-red-500 p-2 rounded-md">
-              ID Drum belum dipilih.
-            </p>
-          )}
-
+          {/* INPUT BUILDING MACHINE */}
           <label htmlFor="building_mc">Building Machine</label>
-          <select
+          <Controller
             name="building_mc"
-            id="building_mc"
-            className="p-2 rounded-md bg-zinc-100"
-            {...register("building_mc", { required: true })}
-          >
-            <option value="">Pilih Mesin Building</option>
-            {machines.map((machine) => (
-              <option key={machine.building_mc} value={machine.building_mc}>
-                {machine.building_mc}
-              </option>
-            ))}
-          </select>
+            control={control}
+            rules={{ required: true }}
+            render={({ field }) => <Select options={mesin} {...field} />}
+          />
 
           {machine && (
             <p className="text-red-500 text-xs border border-red-500 p-2 rounded-md">
@@ -191,27 +206,21 @@ export default function InputNaik() {
               terpasang C/C Drum.
             </p>
           )}
-
           {errors.building_mc && (
             <p className="text-red-500 text-xs border border-red-500 p-2 rounded-md">
               Mesin Building belum dipilih.
             </p>
           )}
 
+          {/* INPUT TUB */}
+
           <label htmlFor="tub">TUB Width</label>
-          <select
+          <Controller
             name="tub"
-            id="tub"
-            className="p-2 rounded-md bg-zinc-100"
-            {...register("tub", { required: true })}
-          >
-            <option value="">Pilih Lebar TUB</option>
-            {tubs.map((tub) => (
-              <option key={tub.id} value={tub.tub_width}>
-                {tub.tub_width}
-              </option>
-            ))}
-          </select>
+            control={control}
+            rules={{ required: true }}
+            render={({ field }) => <Select options={tub} {...field} />}
+          />
 
           {errors.tub && (
             <p className="text-red-500 text-xs border border-red-500 p-2 rounded-md">
@@ -219,24 +228,6 @@ export default function InputNaik() {
             </p>
           )}
 
-          <input
-            type="text"
-            name="status"
-            id="status"
-            defaultValue={"use"}
-            readOnly
-            className="rounded-md bg-zinc-100 -mt-10 invisible"
-            {...register("status")}
-          />
-          <input
-            type="text"
-            name="method"
-            id="method"
-            defaultValue={"naik"}
-            readOnly
-            className="rounded-md bg-zinc-100 -mt-10 invisible"
-            {...register("method")}
-          />
           <button
             type="submit"
             className="mt-5 px-5 py-2 bg-zinc-900 text-white rounded-lg hover:bg-zinc-700 transition duration-200"
