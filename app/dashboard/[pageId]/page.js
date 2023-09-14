@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import Monitoring from "@/components/monitoring/monitoring";
 import InputNaik from "@/components/input/input";
+import CcDrum from "@/components/ccdrum/ccdrum";
 
 export default async function DynamicDash({ params }) {
   const session = await getServerSession(authOptions);
@@ -18,6 +19,8 @@ export default async function DynamicDash({ params }) {
         <Monitoring />
       ) : params.pageId == "input" ? (
         <InputNaik />
+      ) : params.pageId == "drums" ? (
+        <CcDrum />
       ) : (
         params.pageId
       )}
