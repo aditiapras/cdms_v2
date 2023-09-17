@@ -51,8 +51,11 @@ export default function EachDrum({ id_drum }) {
                   : age > 14
                   ? "bg-red-200 hover:bg-red-300"
                   : "bg-white hover:bg-zinc-100"
-              } flex justify-between h-12 items-center p-2 border rounded-md text-xs transition duration-200`}
+              } relative flex justify-between h-12 items-center p-2 border rounded-md text-xs transition duration-200`}
             >
+              <p className="absolute top-0 left-1 text-[7px] text-green-500 animate-pulse">
+                ◉
+              </p>
               <p className="">{data.id_drum}</p>
               <p className="">{age}</p>
             </button>
