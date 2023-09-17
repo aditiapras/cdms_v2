@@ -9,9 +9,11 @@ import { BsFileEarmarkPlusFill } from "react-icons/bs";
 import { FaHistory } from "react-icons/fa";
 import Link from "next/link";
 import Logout from "./logout";
+import { usePathname } from "next/navigation";
 
 export default function DashboardSession({ components }) {
   const { data: session } = useSession();
+  const pathname = usePathname();
 
   return (
     <main className="flex w-full min-h-screen">
@@ -21,37 +23,71 @@ export default function DashboardSession({ components }) {
             href={"/dashboard"}
             className="flex items-center bg-zinc-200 rounded-md p-2 hover:bg-zinc-300"
           >
-            <BiSolidDashboard className="text-4xl text-zinc-400"></BiSolidDashboard>
+            <BiSolidDashboard
+              className={`${
+                pathname === "/dashboard" ? "text-blue-600" : "text-zinc-400"
+              } text-4xl`}
+            ></BiSolidDashboard>
           </Link>
           <Link
             href={"/dashboard/input"}
             className="flex items-center bg-zinc-200 rounded-md p-2 hover:bg-zinc-300"
           >
-            <BsFileEarmarkPlusFill className="text-4xl text-zinc-400"></BsFileEarmarkPlusFill>
+            <BsFileEarmarkPlusFill
+              className={`${
+                pathname === "/dashboard/input"
+                  ? "text-blue-600"
+                  : "text-zinc-400"
+              } text-4xl`}
+            ></BsFileEarmarkPlusFill>
           </Link>
           <Link
             href={"/dashboard/monitoring"}
             className="flex items-center bg-zinc-200 rounded-md p-2 hover:bg-zinc-300"
           >
-            <TbHeartRateMonitor className="text-4xl text-zinc-400"></TbHeartRateMonitor>
+            <TbHeartRateMonitor
+              className={`${
+                pathname === "/dashboard/monitoring"
+                  ? "text-blue-600"
+                  : "text-zinc-400"
+              } text-4xl`}
+            ></TbHeartRateMonitor>
           </Link>
           <Link
             href={"/dashboard/drums"}
             className="flex items-center bg-zinc-200 rounded-md p-2 hover:bg-zinc-300"
           >
-            <GiOilDrum className="text-4xl text-zinc-400"></GiOilDrum>
+            <GiOilDrum
+              className={`${
+                pathname === "/dashboard/drums"
+                  ? "text-blue-600"
+                  : "text-zinc-400"
+              } text-4xl`}
+            ></GiOilDrum>
           </Link>
           <Link
             href={"/dashboard/historycleaning"}
             className="flex items-center bg-zinc-200 rounded-md p-2 hover:bg-zinc-300"
           >
-            <FaHistory className="text-4xl text-zinc-400"></FaHistory>
+            <FaHistory
+              className={`${
+                pathname === "/dashboard/historycleaning"
+                  ? "text-blue-600"
+                  : "text-zinc-400"
+              } text-4xl`}
+            ></FaHistory>
           </Link>
           <Link
             href={"/dashboard/clean-carcass"}
             className="flex items-center bg-zinc-200 rounded-md p-2 hover:bg-zinc-300"
           >
-            <AiOutlineClear className="text-4xl text-zinc-400"></AiOutlineClear>
+            <AiOutlineClear
+              className={`${
+                pathname === "/dashboard/clean-carcass"
+                  ? "text-blue-600"
+                  : "text-zinc-400"
+              } text-4xl`}
+            ></AiOutlineClear>
           </Link>
         </div>
         <Logout />
