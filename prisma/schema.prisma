@@ -52,4 +52,15 @@ model Cleaning {
   id_drum       String   @db.VarChar(20)
   pic           String   @db.VarChar(255)
   date_cleaning DateTime @db.DateTime()
+  parts         Part[]
+}
+
+model Part {
+  id          Int       @id @default(autoincrement())
+  name        String    @db.VarChar(20)
+  status      String    @db.VarChar(10)
+  change      String    @db.VarChar(10)
+  qty         Int
+  Cleaning    Cleaning? @relation(fields: [cleaning_id], references: [cleaning_id])
+  cleaning_id Int?
 }
