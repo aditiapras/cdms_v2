@@ -25,7 +25,8 @@ export default function EachDrum({ id_drum }) {
   return (
     <>
       {data.status == "unuse" ? (
-        <div
+        <Link
+          href={`/dashboard/drums/cleaning/${data.id_drum}`}
           className={`${
             age > 0 && age < 10
               ? "bg-green-200 hover:bg-green-300"
@@ -38,11 +39,11 @@ export default function EachDrum({ id_drum }) {
         >
           <p className="">{data.id_drum}</p>
           <p className="">{age}</p>
-        </div>
+        </Link>
       ) : (
         <HoverCard openDelay={200} closeDelay={0}>
           <HoverCardTrigger asChild>
-            <button
+            <div
               className={`${
                 age > 0 && age < 10
                   ? "bg-green-200 hover:bg-green-300"
@@ -58,7 +59,7 @@ export default function EachDrum({ id_drum }) {
               </p>
               <p className="">{data.id_drum}</p>
               <p className="">{age}</p>
-            </button>
+            </div>
           </HoverCardTrigger>
           <HoverCardContent className="w-72" align="start">
             <div className="flex justify-between space-x-4">
