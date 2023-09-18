@@ -14,9 +14,15 @@ export default function TurunCC({ params }) {
     handleSubmit,
     formState: { errors },
   } = useForm();
+
   const router = useRouter();
+
+  if (params.idDrum == "cleaning") {
+    redirect("/dashboard/drums");
+  }
+
   const { data, error, isLoading } = useFetch(
-    `http://localhost:3000/api/cdms/drums?id=${params.idDrum}`
+    `${process.env.NEXT_PUBLIC_URL}/api/cdms/drums?id=${params.idDrum}`
   );
 
   if (error) return <div>failed to load</div>;
