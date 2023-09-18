@@ -77,7 +77,7 @@ export default function DashboardSession({ components }) {
               } text-4xl`}
             ></FaHistory>
           </Link>
-          <Link
+          {/* <Link
             href={"/dashboard/clean-carcass"}
             className="flex items-center bg-zinc-200 rounded-md p-2 hover:bg-zinc-300"
           >
@@ -88,7 +88,7 @@ export default function DashboardSession({ components }) {
                   : "text-zinc-400"
               } text-4xl`}
             ></AiOutlineClear>
-          </Link>
+          </Link> */}
         </div>
         <Logout />
       </div>
