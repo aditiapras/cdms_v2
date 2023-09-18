@@ -22,12 +22,14 @@ model Monitoring {
   id_left     String? @db.VarChar(20)
   id_right    String? @db.VarChar(20)
   status      String? @db.VarChar(20)
+  phase       String  @db.VarChar(20)
 }
 
 model Drum {
   id_drum     String    @unique @db.VarChar(20)
   rim         Int       @db.Int
   type        String    @db.VarChar(5)
+  phase       String    @db.VarChar(10)
   status      String?   @db.VarChar(10)
   building_mc String?   @db.VarChar(10)
   age         Int?
