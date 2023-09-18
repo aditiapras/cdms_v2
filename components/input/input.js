@@ -17,7 +17,9 @@ export default function InputNaik() {
   const [drum, setDrum] = useState(false);
   const [drumName, setDrumName] = useState("");
   const [machineName, setMachineName] = useState("");
+  const [age, setAge] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [phase, setPhase] = useState("Phase 1");
 
   const {
     handleSubmit,
@@ -94,6 +96,7 @@ export default function InputNaik() {
     };
     if (drumStatus.status == "use") {
       setDrum(true);
+      setAge(false);
       setDrumName(data.id_drum);
       setMachineName(drumStatus.building_mc);
       if (machineStatus.length == 2) {
@@ -104,15 +107,22 @@ export default function InputNaik() {
         setMachineName(drumStatus.building_mc);
       }
     } else {
-      setDrum(false);
-      setDrumName(data.id_drum);
-      if (machineStatus.length == 2) {
-        setMachine(true);
-        setMachineName(data.building_mc);
+      if (drumStatus.age >= 14) {
+        setDrum(false);
+        setAge(true);
+        setDrumName(data.id_drum);
       } else {
-        postDrum(data);
-        inputMonitoring();
-        complete();
+        setAge(false);
+        setDrum(false);
+        setDrumName(data.id_drum);
+        if (machineStatus.length == 2) {
+          setMachine(true);
+          setMachineName(data.building_mc);
+        } else {
+          postDrum(data);
+          inputMonitoring();
+          complete();
+        }
       }
     }
   };
@@ -121,30 +131,34 @@ export default function InputNaik() {
     data: drums,
     error: error1,
     isLoading: loading1,
-  } = useFetch("http://localhost:3000/api/cdms/drums");
+  } = useFetch(`${process.env.NEXT_PUBLIC_URL}/api/cdms/drums`);
 
   const {
     data: machines,
     error: error2,
     isLoading: loading2,
-  } = useFetch("http://localhost:3000/api/cdms/machine");
+  } = useFetch(`${process.env.NEXT_PUBLIC_URL}/api/cdms/machine`);
 
   const {
     data: tubs,
     error: error3,
     isLoading: loading3,
-  } = useFetch("http://localhost:3000/api/cdms/tub");
+  } = useFetch(`${process.env.NEXT_PUBLIC_URL}/api/cdms/tub`);
 
   if (error1 || error2 || error3) return <option value="Error">Error</option>;
   if (loading1 || loading2 || loading3) return <Spinner />;
 
-  const mesin = machines.map((machine) => {
-    return { value: machine.building_mc, label: machine.building_mc };
-  });
+  const mesin = machines
+    .filter((mc) => mc.phase == phase)
+    .map((machine) => {
+      return { value: machine.building_mc, label: machine.building_mc };
+    });
 
-  const ccdrum = drums.map((drum) => {
-    return { value: drum.id_drum, label: drum.id_drum };
-  });
+  const ccdrum = drums
+    .filter((drum) => drum.phase == phase)
+    .map((drum) => {
+      return { value: drum.id_drum, label: drum.id_drum };
+    });
 
   const tub = tubs.map((tub) => {
     return { value: tub.tub_width, label: tub.tub_width };
@@ -168,6 +182,17 @@ export default function InputNaik() {
 
           <p className="font-semibold text-xl">Input Naik</p>
 
+          <label htmlFor="phase">Phase</label>
+          <select
+            name="phase"
+            id="phase"
+            onChange={(e) => setPhase(e.target.value)}
+            className="bg-zinc-100 hover:bg-zinc-200 p-2 rounded-md transition duration-200"
+          >
+            <option value="Phase 1">Phase 1</option>
+            <option value="Phase 2">Phase 2</option>
+          </select>
+
           {/* INPUT ID DRUM */}
           <label htmlFor="id_drum">ID Drum</label>
           <Controller
@@ -187,6 +212,12 @@ export default function InputNaik() {
               ID Drum <span className="font-semibold">{drumName}</span> sudah
               terpasang di mesin{" "}
               <span className="font-semibold">{machineName}</span>.
+            </p>
+          )}
+          {age && (
+            <p className="text-red-500 text-xs border border-red-500 p-2 rounded-md">
+              ID Drum <span className="font-semibold">{drumName}</span> sudah
+              melebihi batas umur pakai, lakukan cleaning terlebih dahulu.
             </p>
           )}
 
