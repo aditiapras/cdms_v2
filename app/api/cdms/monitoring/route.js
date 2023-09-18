@@ -35,3 +35,28 @@ export async function PUT(req) {
   });
   return NextResponse.json(monitoring);
 }
+
+export async function POST(req) {
+  const data = await req.json();
+  const { building_mc, status, phase } = data;
+  const validate = await prisma.monitoring.findUnique({
+    where: {
+      building_mc: building_mc,
+    },
+  });
+
+  if (validate) {
+    return NextResponse.json({
+      message: "Machine already exists",
+    });
+  } else {
+    const monitoring = await prisma.monitoring.create({
+      data: {
+        building_mc,
+        status,
+        phase,
+      },
+    });
+    return NextResponse.json(monitoring);
+  }
+}
