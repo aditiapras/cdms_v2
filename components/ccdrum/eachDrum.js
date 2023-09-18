@@ -11,7 +11,7 @@ import Link from "next/link";
 
 export default function EachDrum({ id_drum }) {
   const { data, error, isLoading } = useFetch(
-    `http://localhost:3000/api/cdms/drums?id=${id_drum}`
+    `${process.env.NEXT_PUBLIC_URL}/api/cdms/drums?id=${id_drum}`
   );
 
   if (error) return <div>failed to load</div>;
@@ -45,7 +45,7 @@ export default function EachDrum({ id_drum }) {
           <HoverCardTrigger asChild>
             <div
               className={`${
-                age > 0 && age < 10
+                age > -1 && age < 10
                   ? "bg-green-200 hover:bg-green-300"
                   : age >= 10 && age <= 14
                   ? "bg-amber-200 hover:bg-amber-300"
