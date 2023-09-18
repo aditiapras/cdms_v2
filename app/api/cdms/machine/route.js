@@ -17,3 +17,16 @@ export async function GET(req) {
     return NextResponse.json(machine);
   }
 }
+
+export async function POST(req) {
+  const body = await req.json();
+  const { building_mc, status, phase } = body;
+  const machine = await prisma.machine.create({
+    data: {
+      building_mc,
+      status,
+      phase,
+    },
+  });
+  return NextResponse.json(machine);
+}
