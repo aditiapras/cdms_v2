@@ -27,7 +27,7 @@ export default function CreateAccount() {
     try {
       axios({
         method: "POST",
-        url: "http://localhost:3000/api/register",
+        url: `${process.env.NEXT_PUBLIC_URL}/api/register`,
         data,
       }).then((res) => {
         if (res.data.registered === false) {
