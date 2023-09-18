@@ -1,19 +1,33 @@
 "use client";
-import { BiSolidPlusCircle, BiSolidMinusCircle } from "react-icons/bi";
-import { useState } from "react";
-import { useForm, useFieldArray } from "react-hook-form";
 import moment from "moment-timezone";
-import { useSession } from "next-auth/react";
 import Link from "next/link";
+import Spinner from "@/components/ui/spinner";
+import { useRouter } from "next/navigation";
+import { useForm, useFieldArray } from "react-hook-form";
+import { useSession } from "next-auth/react";
+import { useFetch } from "@/lib/fetchHelper";
+import { redirect } from "next/navigation";
+import { cleanDrumMonitoring, cleanDrums } from "@/lib/cleanHelper";
 
 export default function CleaningCC({ params }) {
-  const [qty, setQty] = useState(0);
-  const [show, setShow] = useState(false);
   const { register, handleSubmit, control, reset } = useForm();
   const { fields } = useFieldArray({
     control,
     name: "parts",
   });
+  const router = useRouter();
+
+  const {
+    data: drums,
+    error,
+    isLoading,
+  } = useFetch(
+    `${process.env.NEXT_PUBLIC_URL}/api/cdms/drums?id=${params.cleaningId}`
+  );
+
+  if (drums == null) {
+    redirect("/dashboard/drums");
+  }
 
   const { data: session } = useSession();
 
@@ -30,7 +44,7 @@ export default function CleaningCC({ params }) {
     { id: 10, name: "Thread & Screw" },
   ];
 
-  const onSubmit = (res) => {
+  const onSubmit = async (res) => {
     const data = {
       id_drum: res.id_drum,
       pic: session?.user?.username,
@@ -43,11 +57,18 @@ export default function CleaningCC({ params }) {
         };
       }),
     };
-    console.log(data);
+    const clean = await cleanDrums(data);
+    const cleanDrum = await cleanDrumMonitoring(data);
+    console.log(clean);
+    console.log(cleanDrum);
+    router.push("/dashboard/drums");
   };
 
+  if (error) return <div>failed to load</div>;
+  if (isLoading) return <Spinner />;
+
   return (
-    <div className="w-full h-full bg-zinc-100 flex flex-col gap-5 p-5">
+    <div className="w-full h-full bg-zinc-100 flex flex-col gap-5 p-5 items-center justify-center">
       <p className="text-xl font-semibold">Cleaning Carcass Drum</p>
       <div className="flex justify-between gap-5">
         <form
@@ -58,7 +79,7 @@ export default function CleaningCC({ params }) {
             <p>ID Drum:</p>
             <input
               type="text"
-              className="bg-zinc-100 focus-visible:outline-none"
+              className="bg-zinc-100 focus-visible:outline-none font-semibold"
               {...register("id_drum")}
               readOnly
               value={params.cleaningId}
@@ -66,7 +87,9 @@ export default function CleaningCC({ params }) {
           </div>
           <div className="flex gap-3">
             <p>Cleaning Date:</p>
-            <p>{moment().local().format("DD-MMM-YYYY HH:mm")}</p>
+            <p className="font-semibold">
+              {moment().local().format("DD-MMM-YYYY HH:mm")}
+            </p>
           </div>
           <div className="grid grid-cols-4 font-semibold border-b text-center mt-5">
             <p className="">List Item</p>
@@ -105,24 +128,26 @@ export default function CleaningCC({ params }) {
               <input
                 type="number"
                 defaultValue={0}
-                className="p-2 rounded-md"
+                className="p-2 rounded-md w-14"
                 {...register(`parts.${index}.qty`)}
               />
             </div>
           ))}
-          <div className="flex justify-between gap-5 text-center">
-            <Link
-              href="/dashboard/drums"
-              className="bg-zinc-200 hover:bg-zinc-50 p-2 rounded-md w-full transition duration-200"
-            >
-              Cancel
-            </Link>
-            <button
-              type="submit"
-              className="bg-zinc-950 text-white hover:bg-zinc-700 p-2 rounded-md w-full transition duration-200"
-            >
-              Submit
-            </button>
+          <div className="flex justify-end text-center w-full">
+            <div className="flex w-1/3 gap-5">
+              <Link
+                href="/dashboard/drums"
+                className="bg-zinc-200 hover:bg-zinc-50 p-2 rounded-md w-full transition duration-200"
+              >
+                Cancel
+              </Link>
+              <button
+                type="submit"
+                className="bg-zinc-950 text-white hover:bg-zinc-700 p-2 rounded-md w-full transition duration-200"
+              >
+                Submit
+              </button>
+            </div>
           </div>
         </form>
       </div>
