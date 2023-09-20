@@ -1,10 +1,9 @@
-FROM node:18-alpine
+FROM node:18-alpine AS dependencies
 
-RUN mkdir -p /app
 WORKDIR /app
-
 COPY . .
 RUN npm install
+RUN npx prisma generate
 RUN npm run build
 
 EXPOSE 3000
