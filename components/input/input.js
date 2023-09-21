@@ -11,8 +11,11 @@ import {
   postDrum,
   postMonitoring,
 } from "@/lib/postHelper";
+import { useSession } from "next-auth/react";
+import { postHistory } from "@/lib/updateHistory";
 
 export default function InputNaik() {
+  const { data: session } = useSession();
   const [machine, setMachine] = useState(false);
   const [drum, setDrum] = useState(false);
   const [drumName, setDrumName] = useState("");
@@ -44,12 +47,20 @@ export default function InputNaik() {
       status: "use",
       method: "naik",
     };
-    // console.log(data);
 
     const drumStatus = await getDrumStatus(data);
     const machineStatus = await getMachineStatus(data);
     const monitoringStatus = await getMonitoringStatus(data);
     const monitoring = monitoringStatus.data;
+
+    const history = {
+      id_drum: queryValue.id_drum.value,
+      building_mc: queryValue.building_mc.value,
+      age: Number(drumStatus.age),
+      reason: "-",
+      pic: session?.user?.username,
+      type: "Naik",
+    };
 
     const complete = () => {
       setMachine(false);
@@ -94,6 +105,7 @@ export default function InputNaik() {
         console.log("Use");
       }
     };
+
     if (drumStatus.status == "use") {
       setDrum(true);
       setAge(false);
@@ -121,6 +133,7 @@ export default function InputNaik() {
         } else {
           postDrum(data);
           inputMonitoring();
+          postHistory(history);
           complete();
         }
       }
