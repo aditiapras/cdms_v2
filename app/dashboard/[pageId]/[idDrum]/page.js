@@ -7,8 +7,11 @@ import Link from "next/link";
 import moment from "moment-timezone";
 import { unmountDrum, unmountMachine } from "@/lib/unmountHelper";
 import { redirect } from "next/navigation";
+import { postHistory } from "@/lib/updateHistory";
+import { useSession } from "next-auth/react";
 
 export default function TurunCC({ params }) {
+  const { data: session } = useSession();
   const {
     register,
     handleSubmit,
@@ -50,12 +53,21 @@ export default function TurunCC({ params }) {
       reason: queryData.reason,
       method: "turun",
     };
+    const history = {
+      id_drum: queryData.id_drum,
+      building_mc: queryData.building_mc,
+      age: Number(age),
+      reason: queryData.reason,
+      pic: session?.user?.username,
+      type: "Turun",
+    };
 
     const turunDrum = await unmountDrum(data2);
     console.log(turunDrum.data);
 
     const turunMesin = await unmountMachine(data);
     console.log(turunMesin);
+    postHistory(history);
     router.push("/dashboard/monitoring");
   };
 
