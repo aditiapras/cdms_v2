@@ -66,3 +66,14 @@ model Part {
   Cleaning    Cleaning? @relation(fields: [cleaning_id], references: [cleaning_id])
   cleaning_id Int?
 }
+
+model History {
+  id          Int      @id @default(autoincrement())
+  id_drum     String   @db.VarChar(20)
+  building_mc String   @db.VarChar(10)
+  age         Int?
+  date        DateTime @db.DateTime()
+  reason      String?  @db.VarChar(255)
+  type        String   @db.VarChar(20)
+  PIC         String   @db.VarChar(20)
+}
