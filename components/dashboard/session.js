@@ -66,29 +66,17 @@ export default function DashboardSession({ components }) {
             ></GiOilDrum>
           </Link>
           <Link
-            href={"/dashboard/historycleaning"}
+            href={"/dashboard/history"}
             className="flex items-center bg-zinc-200 rounded-md p-2 hover:bg-zinc-300"
           >
             <FaHistory
               className={`${
-                pathname === "/dashboard/historycleaning"
+                pathname === "/dashboard/history"
                   ? "text-blue-600"
                   : "text-zinc-400"
               } text-4xl`}
             ></FaHistory>
           </Link>
-          {/* <Link
-            href={"/dashboard/clean-carcass"}
-            className="flex items-center bg-zinc-200 rounded-md p-2 hover:bg-zinc-300"
-          >
-            <AiOutlineClear
-              className={`${
-                pathname === "/dashboard/clean-carcass"
-                  ? "text-blue-600"
-                  : "text-zinc-400"
-              } text-4xl`}
-            ></AiOutlineClear>
-          </Link> */}
         </div>
         <Logout />
       </div>
