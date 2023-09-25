@@ -2,8 +2,8 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Sep 25, 2023 at 05:23 AM
+-- Host: localhost
+-- Generation Time: Sep 25, 2023 at 04:42 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -24,10 +24,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cleaning`
+-- Table structure for table `Cleaning`
 --
 
-CREATE TABLE `cleaning` (
+CREATE TABLE `Cleaning` (
   `cleaning_id` int(11) NOT NULL,
   `id_drum` varchar(20) NOT NULL,
   `pic` varchar(255) NOT NULL,
@@ -35,10 +35,10 @@ CREATE TABLE `cleaning` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `cleaning`
+-- Dumping data for table `Cleaning`
 --
 
-INSERT INTO `cleaning` (`cleaning_id`, `id_drum`, `pic`, `date_cleaning`) VALUES
+INSERT INTO `Cleaning` (`cleaning_id`, `id_drum`, `pic`, `date_cleaning`) VALUES
 (4, 'I16P-H21B-05', 'Aditia Prasetian', '2023-09-17 13:57:46'),
 (5, 'I13P-H19A-03', 'Aditia Prasetian', '2023-09-18 06:13:56'),
 (6, 'I13P-H19A-01', 'Aditia Prasetian', '2023-09-18 06:18:27'),
@@ -47,15 +47,17 @@ INSERT INTO `cleaning` (`cleaning_id`, `id_drum`, `pic`, `date_cleaning`) VALUES
 (9, 'I14P-H19A-01', 'Aditia Prasetian', '2023-09-19 03:47:48'),
 (10, 'I14P-H19A-02', 'Aditia Prasetian', '2023-09-19 05:00:46'),
 (12, 'I13P-H19A-01', 'Aditia Prasetian', '2023-09-22 04:23:57'),
-(13, 'I13P-H19A-04', 'Aditia Prasetian', '2023-09-22 06:04:37');
+(13, 'I13P-H19A-04', 'Aditia Prasetian', '2023-09-22 06:04:37'),
+(14, 'I16L-H30B-20', 'Aditia Prasetian', '2023-09-25 14:02:11'),
+(15, 'I16L-H30B-24', 'Aditia Prasetian', '2023-09-25 14:02:23');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `drum`
+-- Table structure for table `Drum`
 --
 
-CREATE TABLE `drum` (
+CREATE TABLE `Drum` (
   `id_drum` varchar(20) NOT NULL,
   `rim` int(11) NOT NULL,
   `type` varchar(5) NOT NULL,
@@ -69,10 +71,10 @@ CREATE TABLE `drum` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `drum`
+-- Dumping data for table `Drum`
 --
 
-INSERT INTO `drum` (`id_drum`, `rim`, `type`, `status`, `building_mc`, `age`, `date_naik`, `date_turun`, `reason`, `phase`) VALUES
+INSERT INTO `Drum` (`id_drum`, `rim`, `type`, `status`, `building_mc`, `age`, `date_naik`, `date_turun`, `reason`, `phase`) VALUES
 ('I13P-H19A-01', 13, 'PCR', 'unuse', '', 0, '2023-09-22 04:23:57', '2023-09-22 04:23:57', '', 'Phase 1'),
 ('I13P-H19A-02', 13, 'PCR', 'use', 'H1101', 0, '2023-09-18 06:34:43', '2023-09-18 06:19:49', '', 'Phase 1'),
 ('I13P-H19A-03', 13, 'PCR', 'use', 'H1101', 0, '2023-09-18 06:39:20', '2023-09-18 06:13:56', '', 'Phase 1'),
@@ -179,18 +181,18 @@ INSERT INTO `drum` (`id_drum`, `rim`, `type`, `status`, `building_mc`, `age`, `d
 ('I15P-H19B-20', 15, 'PCR', 'unuse', '', 0, '2023-09-06 10:53:35', '2023-09-04 20:10:01', NULL, 'Phase 2'),
 ('I15P-H19B-21', 15, 'PCR', 'unuse', '', 0, '2023-09-06 10:53:35', '2023-09-04 20:10:01', NULL, 'Phase 2'),
 ('I15P-H19B-22', 15, 'PCR', 'unuse', '', 0, '2023-09-06 10:53:35', '2023-09-04 20:10:01', NULL, 'Phase 2'),
-('I16L-H30A-29', 16, 'LTR', 'use', 'H1305', 0, '2023-09-22 04:15:10', '2023-09-13 11:35:08', NULL, 'Phase 1'),
+('I16L-H30A-29', 16, 'LTR', 'unuse', '', 3, '2023-09-22 04:15:10', '2023-09-25 13:58:54', 'Ganti Size', 'Phase 1'),
 ('I16L-H30A-30', 16, 'LTR', 'unuse', '', 0, '2023-09-13 11:35:08', '2023-09-13 11:35:08', NULL, 'Phase 1'),
 ('I16L-H30A-31', 16, 'LTR', 'unuse', '', 0, '2023-09-13 11:35:08', '2023-09-13 11:35:08', NULL, 'Phase 1'),
 ('I16L-H30A-32', 16, 'LTR', 'unuse', '', 0, '2023-09-13 11:35:08', '2023-09-13 11:35:08', NULL, 'Phase 1'),
 ('I16L-H30A-33', 16, 'LTR', 'unuse', '', 0, '2023-09-13 11:35:08', '2023-09-13 11:35:08', NULL, 'Phase 1'),
 ('I16L-H30A-34', 16, 'LTR', 'unuse', '', 0, '2023-09-13 11:35:08', '2023-09-13 11:35:08', NULL, 'Phase 1'),
 ('I16L-H30B-19', 16, 'LTR', 'unuse', '', 0, '2023-09-06 10:53:35', '2023-09-04 20:10:01', NULL, 'Phase 2'),
-('I16L-H30B-20', 16, 'LTR', 'use', 'H1704', 5, '2023-09-18 04:06:14', '2023-09-18 03:33:08', 'Bladder Bocor', 'Phase 2'),
+('I16L-H30B-20', 16, 'LTR', 'unuse', '', 0, '2023-09-25 14:02:11', '2023-09-25 14:02:11', '', 'Phase 2'),
 ('I16L-H30B-21', 16, 'LTR', 'unuse', '', 0, '2023-09-06 10:53:35', '2023-09-04 20:10:01', NULL, 'Phase 2'),
 ('I16L-H30B-22', 16, 'LTR', 'unuse', '', 0, '2023-09-06 10:53:35', '2023-09-04 20:10:01', NULL, 'Phase 2'),
 ('I16L-H30B-23', 16, 'LTR', 'unuse', '', 0, '2023-09-06 10:53:35', '2023-09-04 20:10:01', NULL, 'Phase 2'),
-('I16L-H30B-24', 16, 'LTR', 'use', 'H1704', 5, '2023-09-18 04:06:25', '2023-09-18 03:33:05', 'Bladder Bocor', 'Phase 2'),
+('I16L-H30B-24', 16, 'LTR', 'unuse', '', 0, '2023-09-25 14:02:23', '2023-09-25 14:02:23', '', 'Phase 2'),
 ('I16P-H21A-01', 16, 'PCR', 'unuse', '', 0, '2023-09-13 11:35:08', '2023-09-13 11:35:08', NULL, 'Phase 1'),
 ('I16P-H21A-02', 16, 'PCR', 'unuse', '', 0, '2023-09-13 11:35:08', '2023-09-13 11:35:08', NULL, 'Phase 1'),
 ('I16P-H21A-03', 16, 'PCR', 'unuse', '', 0, '2023-09-13 11:35:08', '2023-09-13 11:35:08', NULL, 'Phase 1'),
@@ -219,8 +221,8 @@ INSERT INTO `drum` (`id_drum`, `rim`, `type`, `status`, `building_mc`, `age`, `d
 ('I16P-H21A-26', 16, 'PCR', 'unuse', '', 0, '2023-09-13 11:35:08', '2023-09-13 11:35:08', NULL, 'Phase 1'),
 ('I16P-H21A-27', 16, 'PCR', 'unuse', '', 0, '2023-09-13 11:35:08', '2023-09-13 11:35:08', NULL, 'Phase 1'),
 ('I16P-H21A-28', 16, 'PCR', 'unuse', '', 0, '2023-09-13 11:35:08', '2023-09-13 11:35:08', NULL, 'Phase 1'),
-('I16P-H21B-01', 16, 'PCR', 'use', 'H1502', 5, '2023-09-18 04:08:04', '2023-09-18 03:33:12', 'Bladder Bocor', 'Phase 2'),
-('I16P-H21B-02', 16, 'PCR', 'use', 'H1502', 5, '2023-09-18 04:08:11', '2023-09-18 03:33:15', 'Bladder Bocor', 'Phase 2'),
+('I16P-H21B-01', 16, 'PCR', 'unuse', '', 12, '2023-09-18 04:08:04', '2023-09-25 13:59:58', 'Cleaning', 'Phase 2'),
+('I16P-H21B-02', 16, 'PCR', 'unuse', '', 12, '2023-09-18 04:08:11', '2023-09-25 14:00:04', 'Cleaning', 'Phase 2'),
 ('I16P-H21B-03', 16, 'PCR', 'use', 'H1601', 5, '2023-09-18 04:08:22', '2023-09-18 03:33:19', 'Bladder Bocor', 'Phase 2'),
 ('I16P-H21B-04', 16, 'PCR', 'use', 'H1601', 5, '2023-09-18 04:08:30', '2023-09-18 03:33:22', 'Bladder Bocor', 'Phase 2'),
 ('I16P-H21B-05', 16, 'PCR', 'use', 'H1804', 5, '2023-09-18 04:09:06', '2023-09-18 03:32:33', 'Bladder Bocor', 'Phase 2'),
@@ -313,10 +315,10 @@ INSERT INTO `drum` (`id_drum`, `rim`, `type`, `status`, `building_mc`, `age`, `d
 -- --------------------------------------------------------
 
 --
--- Table structure for table `history`
+-- Table structure for table `History`
 --
 
-CREATE TABLE `history` (
+CREATE TABLE `History` (
   `id` int(11) NOT NULL,
   `id_drum` varchar(20) NOT NULL,
   `building_mc` varchar(10) NOT NULL,
@@ -328,35 +330,40 @@ CREATE TABLE `history` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `history`
+-- Dumping data for table `History`
 --
 
-INSERT INTO `history` (`id`, `id_drum`, `building_mc`, `age`, `reason`, `PIC`, `date`, `type`) VALUES
+INSERT INTO `History` (`id`, `id_drum`, `building_mc`, `age`, `reason`, `PIC`, `date`, `type`) VALUES
 (9, 'I13P-H19A-01', 'H1102', 2, 'Cleaning', 'Aditia Prasetian', '2023-09-21 05:47:13', 'Turun'),
 (10, 'I13P-H19A-04', 'H1102', 2, 'Cleaning', 'Aditia Prasetian', '2023-09-21 05:48:29', 'Turun'),
 (11, 'I17P-H21A-01', 'H1103', 0, '', 'Aditia Prasetian', '2023-09-21 05:48:41', 'Naik'),
 (12, 'I13P-H19A-01', 'H1102', 2, '', 'Aditia Prasetian', '2023-09-21 05:49:17', 'Naik'),
 (13, 'I13P-H19A-01', 'H1102', 2, 'Ganti Size', 'Aditia Prasetian', '2023-09-21 08:04:56', 'Turun'),
 (14, 'I17P-H21A-01', 'H1103', 0, 'Ganti Size', 'Aditia Prasetian', '2023-09-21 08:05:19', 'Turun'),
-(15, 'I16L-H30A-29', 'H1305', 0, '-', 'Aditia Prasetian', '2023-09-22 04:15:10', 'Naik');
+(15, 'I16L-H30A-29', 'H1305', 0, '-', 'Aditia Prasetian', '2023-09-22 04:15:10', 'Naik'),
+(16, 'I16L-H30A-29', 'H1305', 3, 'Ganti Size', 'Aditia Prasetian', '2023-09-25 13:58:54', 'Turun'),
+(17, 'I16L-H30B-20', 'H1704', 12, 'Cleaning', 'Aditia Prasetian', '2023-09-25 13:59:07', 'Turun'),
+(18, 'I16L-H30B-24', 'H1704', 12, 'Cleaning', 'Aditia Prasetian', '2023-09-25 13:59:14', 'Turun'),
+(19, 'I16P-H21B-01', 'H1502', 12, 'Cleaning', 'Aditia Prasetian', '2023-09-25 13:59:58', 'Turun'),
+(20, 'I16P-H21B-02', 'H1502', 12, 'Cleaning', 'Aditia Prasetian', '2023-09-25 14:00:04', 'Turun');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `machine`
+-- Table structure for table `Machine`
 --
 
-CREATE TABLE `machine` (
+CREATE TABLE `Machine` (
   `building_mc` varchar(10) NOT NULL,
   `status` varchar(10) DEFAULT NULL,
   `phase` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `machine`
+-- Dumping data for table `Machine`
 --
 
-INSERT INTO `machine` (`building_mc`, `status`, `phase`) VALUES
+INSERT INTO `Machine` (`building_mc`, `status`, `phase`) VALUES
 ('H1101', 'unuse', 'Phase 1'),
 ('H1102', 'unuse', 'Phase 1'),
 ('H1103', 'unuse', 'Phase 1'),
@@ -401,10 +408,10 @@ INSERT INTO `machine` (`building_mc`, `status`, `phase`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `monitoring`
+-- Table structure for table `Monitoring`
 --
 
-CREATE TABLE `monitoring` (
+CREATE TABLE `Monitoring` (
   `building_mc` varchar(10) NOT NULL,
   `id_left` varchar(20) DEFAULT NULL,
   `id_right` varchar(20) DEFAULT NULL,
@@ -413,10 +420,10 @@ CREATE TABLE `monitoring` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `monitoring`
+-- Dumping data for table `Monitoring`
 --
 
-INSERT INTO `monitoring` (`building_mc`, `id_left`, `id_right`, `status`, `phase`) VALUES
+INSERT INTO `Monitoring` (`building_mc`, `id_left`, `id_right`, `status`, `phase`) VALUES
 ('H1101', 'I13P-H19A-02', 'I13P-H19A-03', 'use', 'Phase 1'),
 ('H1102', '', '', 'unuse', 'Phase 1'),
 ('H1103', '', '', 'unuse', 'Phase 1'),
@@ -431,14 +438,14 @@ INSERT INTO `monitoring` (`building_mc`, `id_left`, `id_right`, `status`, `phase
 ('H1302', '', '', 'unuse', 'Phase 1'),
 ('H1303', '', '', 'unuse', 'Phase 1'),
 ('H1304', '', '', 'unuse', 'Phase 1'),
-('H1305', 'I16L-H30A-29', '', 'use', 'Phase 1'),
+('H1305', '', '', 'unuse', 'Phase 1'),
 ('H1401', '', '', 'unuse', 'Phase 1'),
 ('H1402', '', '', 'unuse', 'Phase 1'),
 ('H1403', '', '', 'unuse', 'Phase 1'),
 ('H1404', '', '', 'unuse', 'Phase 1'),
 ('H1405', '', '', 'unuse', 'Phase 1'),
 ('H1501', '', '', 'unuse', 'Phase 2'),
-('H1502', 'I16P-H21B-01', 'I16P-H21B-02', 'use', 'Phase 2'),
+('H1502', '', '', 'unuse', 'Phase 2'),
 ('H1503', '', '', 'unuse', 'Phase 2'),
 ('H1504', '', '', 'unuse', 'Phase 2'),
 ('H1505', '', '', 'unuse', 'Phase 2'),
@@ -450,7 +457,7 @@ INSERT INTO `monitoring` (`building_mc`, `id_left`, `id_right`, `status`, `phase
 ('H1701', '', '', 'unuse', 'Phase 2'),
 ('H1702', '', '', 'unuse', 'Phase 2'),
 ('H1703', '', '', 'unuse', 'Phase 2'),
-('H1704', 'I16L-H30B-20', 'I16L-H30B-24', 'use', 'Phase 2'),
+('H1704', '', '', 'unuse', 'Phase 2'),
 ('H1705', '', '', 'unuse', 'Phase 2'),
 ('H1801', '', '', 'unuse', 'Phase 2'),
 ('H1802', '', '', 'unuse', 'Phase 2'),
@@ -461,10 +468,10 @@ INSERT INTO `monitoring` (`building_mc`, `id_left`, `id_right`, `status`, `phase
 -- --------------------------------------------------------
 
 --
--- Table structure for table `part`
+-- Table structure for table `Part`
 --
 
-CREATE TABLE `part` (
+CREATE TABLE `Part` (
   `id` int(11) NOT NULL,
   `name` varchar(20) NOT NULL,
   `cleaning_id` int(11) DEFAULT NULL,
@@ -474,10 +481,10 @@ CREATE TABLE `part` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `part`
+-- Dumping data for table `Part`
 --
 
-INSERT INTO `part` (`id`, `name`, `cleaning_id`, `change`, `qty`, `status`) VALUES
+INSERT INTO `Part` (`id`, `name`, `cleaning_id`, `change`, `qty`, `status`) VALUES
 (1, 'Rubber Band', NULL, 'Yes', 2, 'NG'),
 (2, 'Spring Finger', NULL, '', 0, ''),
 (3, 'Bead Lock', NULL, '', 0, ''),
@@ -607,24 +614,44 @@ INSERT INTO `part` (`id`, `name`, `cleaning_id`, `change`, `qty`, `status`) VALU
 (127, 'Seal O Ring', 13, 'No', 0, 'OK'),
 (128, 'Bolt Disc', 13, 'No', 0, 'OK'),
 (129, 'Cylinder Spring', 13, 'No', 0, 'OK'),
-(130, 'Thread & Screw', 13, 'No', 0, 'OK');
+(130, 'Thread & Screw', 13, 'No', 0, 'OK'),
+(131, 'Rubber Band', 14, 'No', 0, 'OK'),
+(132, 'Spring Finger', 14, 'No', 0, 'OK'),
+(133, 'Bead Lock', 14, 'No', 0, 'OK'),
+(134, 'Shoulder Finger', 14, 'No', 0, 'OK'),
+(135, 'Turn Up Bladder', 14, 'Yes', 1, 'NG'),
+(136, 'Check & Valve', 14, 'No', 0, 'OK'),
+(137, 'Seal O Ring', 14, 'No', 0, 'OK'),
+(138, 'Bolt Disc', 14, 'No', 0, 'OK'),
+(139, 'Cylinder Spring', 14, 'No', 0, 'OK'),
+(140, 'Thread & Screw', 14, 'No', 0, 'OK'),
+(141, 'Rubber Band', 15, 'No', 0, 'OK'),
+(142, 'Spring Finger', 15, 'No', 0, 'OK'),
+(143, 'Bead Lock', 15, 'No', 0, 'OK'),
+(144, 'Shoulder Finger', 15, 'No', 0, 'OK'),
+(145, 'Turn Up Bladder', 15, 'Yes', 1, 'NG'),
+(146, 'Check & Valve', 15, 'No', 0, 'OK'),
+(147, 'Seal O Ring', 15, 'No', 0, 'OK'),
+(148, 'Bolt Disc', 15, 'No', 0, 'OK'),
+(149, 'Cylinder Spring', 15, 'No', 0, 'OK'),
+(150, 'Thread & Screw', 15, 'No', 0, 'OK');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tub`
+-- Table structure for table `Tub`
 --
 
-CREATE TABLE `tub` (
+CREATE TABLE `Tub` (
   `id` int(11) NOT NULL,
   `tub_width` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `tub`
+-- Dumping data for table `Tub`
 --
 
-INSERT INTO `tub` (`id`, `tub_width`) VALUES
+INSERT INTO `Tub` (`id`, `tub_width`) VALUES
 (1, 320),
 (2, 345),
 (3, 360),
@@ -635,10 +662,10 @@ INSERT INTO `tub` (`id`, `tub_width`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Table structure for table `User`
 --
 
-CREATE TABLE `user` (
+CREATE TABLE `User` (
   `nik` varchar(20) NOT NULL,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
@@ -646,10 +673,10 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `user`
+-- Dumping data for table `User`
 --
 
-INSERT INTO `user` (`nik`, `username`, `password`, `workgroup`) VALUES
+INSERT INTO `User` (`nik`, `username`, `password`, `workgroup`) VALUES
 ('60000011', 'Ahmad Budi Harto', '$2b$10$s7VX/mjHawMHGXmn33O7.u2wNC6U.0yUXbLyOExch5F86A9CFegfy', 'NS'),
 ('60000186', 'Haryanto', '$2b$10$qCosNSuouo1XNOpa1zKf2.YqwU1zUKUv9QZeNOG3.NIAD8oCq3uIm', 'NS'),
 ('60001692', 'Agung Supriyadi', '$2b$10$IaJpBLII.28bkbQtxjSVsen6DsjLbrFMJO295b666H3e2Cbiq9kOm', 'NS'),
@@ -677,72 +704,73 @@ CREATE TABLE `_prisma_migrations` (
 --
 
 INSERT INTO `_prisma_migrations` (`id`, `checksum`, `finished_at`, `migration_name`, `logs`, `rolled_back_at`, `started_at`, `applied_steps_count`) VALUES
-('0dca0f9c-ab5e-4ca4-8aac-74b11c32ad27', 'f1c7ac11e8151860f9b2c22e5ad7ef32c6b16a2c2197406c921124336ca34247', '2023-09-21 03:43:40.024', '20230921034339_', NULL, NULL, '2023-09-21 03:43:39.978', 1),
-('13759a48-33d7-40c7-9f8a-b07a9098c7d6', 'b6be232f2846a78ae0484cee1ca764b5b9f53ba301441ee9e2549a9c83e837fa', '2023-09-18 01:47:21.078', '20230911153832_datetime', NULL, NULL, '2023-09-18 01:47:21.016', 1),
-('2955e765-17c6-4bc4-8a97-41ed8adda93a', '8cc142015df4a8c35ed4af04a98488ec77d993e67ff42060704a740601a1fca8', '2023-09-18 01:50:13.312', '20230918015013_drum_phase', NULL, NULL, '2023-09-18 01:50:13.281', 1),
-('2fdae95f-e0a4-4c38-9e51-32a247e2dbe4', '2a38e66c07eb54b47261f6ec2f507e17c1a57965da36bfd50404db5b9181f8be', '2023-09-21 03:30:14.706', '20230921033014_update_history', NULL, NULL, '2023-09-21 03:30:14.675', 1),
-('33c1f4b1-eadc-4a85-b413-4ecd1600d04a', '769dabdae6df8647dfc7acfa30791fb1209ad9216e1e6a70f8c564c338c6ff5e', '2023-09-18 01:47:21.386', '20230917062906_part_table', NULL, NULL, '2023-09-18 01:47:21.276', 1),
-('3ec7b3cd-a3ef-4406-b318-cb7e3a6afc79', 'dd1bfffcc42371398284de544ac5f20edefacb2f29b50a51824b453fefd32995', '2023-09-21 05:43:17.738', '20230921054317_datatype', NULL, NULL, '2023-09-21 05:43:17.689', 1),
-('4e8ec80c-370f-446c-a221-724ebfe77040', 'edfa6b4b4b4735fdcac25f0006998f4d79bcc411d3d40fe8e8625d382a1dd391', '2023-09-18 01:47:21.229', '20230912110519_building_mc', NULL, NULL, '2023-09-18 01:47:21.185', 1),
-('4eba1905-692a-4c0f-a004-568e6a7668fc', '6d03e9e443a0e58635648994e4a612c400d993411d6fd4234b2ffcc070ee1e5b', '2023-09-18 01:47:21.183', '20230911175245_nik', NULL, NULL, '2023-09-18 01:47:21.118', 1),
-('6b8c76ab-ef1e-418d-93e7-9dd53ebcf8a6', '18f62852d61a4a5cea1ed227da7f440de31a54fa47099b8a4726d6b2be8b50b9', '2023-09-18 01:47:21.275', '20230912110629_building_mc', NULL, NULL, '2023-09-18 01:47:21.230', 1),
-('854ea757-c842-4559-9c14-40d2b1cbcb26', 'be1f205ad3b0d0d4eb616375857e5e245ab65c250972e37560b1a968188214fc', '2023-09-18 01:47:31.824', '20230918014731_add_phase', NULL, NULL, '2023-09-18 01:47:31.782', 1),
-('86a36aee-bc81-440f-a03f-56a782cca169', 'ec61c027f8ae46ba476f21edeb629ee49b60a512dfd908d247196084a932096f', '2023-09-18 01:47:21.014', '20230911133243_init', NULL, NULL, '2023-09-18 01:47:20.955', 1),
-('92199da2-cad4-49a2-8f0a-0dcdab8c3c0f', '1bba1491b8ca1a3872c4171fb3bafb28cd77e670e167e9b17d843b487f874b8b', '2023-09-18 01:47:21.431', '20230917063502_part', NULL, NULL, '2023-09-18 01:47:21.388', 1),
-('ce403607-8ae5-4351-ae2b-abd533f14884', '0fc59034b369e359df701f5d8086ceffac10b1bfb4754a83acf4bff9e283668c', '2023-09-21 01:23:33.950', '20230921012333_history', NULL, NULL, '2023-09-21 01:23:33.913', 1),
-('e8596a15-9196-4052-b98a-a464cc3c16d7', '4712f95aaa7acd6d9d58598b21f239a7e2c5d5cb1a1f7d46defeb6216c1222a5', '2023-09-18 01:47:21.116', '20230911155259_reason', NULL, NULL, '2023-09-18 01:47:21.079', 1);
+('0bdaa6de-794b-4058-8b15-495d5d91c05f', 'c32620a7a854ee5dc2cb0a9ea64b79c303bd3d105f3de5aa6c8a8867601dbfe8', '2023-09-25 11:03:26.415', '20230911153832_datetime', NULL, NULL, '2023-09-25 11:03:26.398', 1),
+('24dd6f33-9882-43d7-b392-da4383ddfa1d', '8cc142015df4a8c35ed4af04a98488ec77d993e67ff42060704a740601a1fca8', '2023-09-25 11:03:26.564', '20230918015013_drum_phase', NULL, NULL, '2023-09-25 11:03:26.555', 1),
+('36092cbd-7366-40eb-87f8-1d2875507cee', 'ed11d6325ab1901470062e803b50e10c519985d450e7790859e49f36a3e57605', '2023-09-25 11:03:26.498', '20230912110629_building_mc', NULL, NULL, '2023-09-25 11:03:26.486', 1),
+('50ac11e3-e384-4889-b392-fa6a47a8906a', '5becde5e685db554a10f648f0fdbe1dcc36d565298663c715e4eb8f5012349d7', '2023-09-25 11:03:26.543', '20230917063502_part', NULL, NULL, '2023-09-25 11:03:26.531', 1),
+('860c962f-3975-4681-9bad-9d307e1a4d61', '2a38e66c07eb54b47261f6ec2f507e17c1a57965da36bfd50404db5b9181f8be', '2023-09-25 11:03:26.593', '20230921033014_update_history', NULL, NULL, '2023-09-25 11:03:26.579', 1),
+('9a96c461-7607-40a2-840a-f016f1f7ce11', '9db7f1d42a6a9296bd3bfcd9e89270184e17607252422a0ad3d16019792b8f60', '2023-09-25 11:03:33.752', '20230925110333_histories', NULL, NULL, '2023-09-25 11:03:33.740', 1),
+('a8ce27fa-2ce1-431a-9e59-89e151a55b88', 'ff41b38e361734f5bcb19fde44f4921653fd9bda9bfde407a9b4da08a71e8830', '2023-09-25 11:03:26.472', '20230911175245_nik', NULL, NULL, '2023-09-25 11:03:26.426', 1),
+('a93dd1a2-eb6b-4d7d-9579-a7f12bcc7023', '3c98fe4e01f9b276add5883fce842765fbe5af224219e6d7ae7620173537da9b', '2023-09-25 11:03:26.397', '20230911133243_init', NULL, NULL, '2023-09-25 11:03:26.366', 1),
+('ac1735a2-12c3-41c4-9680-e754c4cd0f7d', 'dd1bfffcc42371398284de544ac5f20edefacb2f29b50a51824b453fefd32995', '2023-09-25 11:03:26.626', '20230921054317_datatype', NULL, NULL, '2023-09-25 11:03:26.611', 1),
+('ae0e85aa-0281-40b1-8465-dcb5a0321474', 'efb23f8119a5fda1e52abd0c5b4497ff83e9778bcfeb4a87ace002f74bed8059', '2023-09-25 11:03:26.486', '20230912110519_building_mc', NULL, NULL, '2023-09-25 11:03:26.473', 1),
+('b200e9ae-1ba8-4d78-afbc-40cdb93f14da', 'b0b54e9676bc74a96d3bc1a41eae125c9447e6475230ce8c72850e033fc8b0d5', '2023-09-25 11:03:26.425', '20230911155259_reason', NULL, NULL, '2023-09-25 11:03:26.415', 1),
+('c2679d6f-6f33-4623-b637-8c774616ee1c', 'be1f205ad3b0d0d4eb616375857e5e245ab65c250972e37560b1a968188214fc', '2023-09-25 11:03:26.555', '20230918014731_add_phase', NULL, NULL, '2023-09-25 11:03:26.543', 1),
+('cb7f39c4-8754-465c-b5d5-57833d6b7623', '0fc59034b369e359df701f5d8086ceffac10b1bfb4754a83acf4bff9e283668c', '2023-09-25 11:03:26.579', '20230921012333_history', NULL, NULL, '2023-09-25 11:03:26.565', 1),
+('cd72da51-2a82-4f98-9f39-fb569508e2d7', '63053d01d767a87f9732822e108dbb228fa359dd9464b492403d2f76558f3290', '2023-09-25 11:03:26.530', '20230917062906_part_table', NULL, NULL, '2023-09-25 11:03:26.499', 1),
+('dc392fb2-ab44-46fd-84de-e1ba16421090', 'f1c7ac11e8151860f9b2c22e5ad7ef32c6b16a2c2197406c921124336ca34247', '2023-09-25 11:03:26.610', '20230921034339_', NULL, NULL, '2023-09-25 11:03:26.593', 1);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `cleaning`
+-- Indexes for table `Cleaning`
 --
-ALTER TABLE `cleaning`
+ALTER TABLE `Cleaning`
   ADD PRIMARY KEY (`cleaning_id`);
 
 --
--- Indexes for table `drum`
+-- Indexes for table `Drum`
 --
-ALTER TABLE `drum`
+ALTER TABLE `Drum`
   ADD UNIQUE KEY `Drum_id_drum_key` (`id_drum`);
 
 --
--- Indexes for table `history`
+-- Indexes for table `History`
 --
-ALTER TABLE `history`
+ALTER TABLE `History`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `machine`
+-- Indexes for table `Machine`
 --
-ALTER TABLE `machine`
+ALTER TABLE `Machine`
   ADD UNIQUE KEY `Machine_building_mc_key` (`building_mc`);
 
 --
--- Indexes for table `monitoring`
+-- Indexes for table `Monitoring`
 --
-ALTER TABLE `monitoring`
+ALTER TABLE `Monitoring`
   ADD UNIQUE KEY `Monitoring_building_mc_key` (`building_mc`);
 
 --
--- Indexes for table `part`
+-- Indexes for table `Part`
 --
-ALTER TABLE `part`
+ALTER TABLE `Part`
   ADD PRIMARY KEY (`id`),
   ADD KEY `Part_cleaning_id_fkey` (`cleaning_id`);
 
 --
--- Indexes for table `tub`
+-- Indexes for table `Tub`
 --
-ALTER TABLE `tub`
+ALTER TABLE `Tub`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `user`
+-- Indexes for table `User`
 --
-ALTER TABLE `user`
+ALTER TABLE `User`
   ADD UNIQUE KEY `User_nik_key` (`nik`);
 
 --
@@ -756,27 +784,27 @@ ALTER TABLE `_prisma_migrations`
 --
 
 --
--- AUTO_INCREMENT for table `cleaning`
+-- AUTO_INCREMENT for table `Cleaning`
 --
-ALTER TABLE `cleaning`
-  MODIFY `cleaning_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+ALTER TABLE `Cleaning`
+  MODIFY `cleaning_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT for table `history`
+-- AUTO_INCREMENT for table `History`
 --
-ALTER TABLE `history`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+ALTER TABLE `History`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
--- AUTO_INCREMENT for table `part`
+-- AUTO_INCREMENT for table `Part`
 --
-ALTER TABLE `part`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=131;
+ALTER TABLE `Part`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=151;
 
 --
--- AUTO_INCREMENT for table `tub`
+-- AUTO_INCREMENT for table `Tub`
 --
-ALTER TABLE `tub`
+ALTER TABLE `Tub`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
@@ -784,10 +812,10 @@ ALTER TABLE `tub`
 --
 
 --
--- Constraints for table `part`
+-- Constraints for table `Part`
 --
-ALTER TABLE `part`
-  ADD CONSTRAINT `Part_cleaning_id_fkey` FOREIGN KEY (`cleaning_id`) REFERENCES `cleaning` (`cleaning_id`) ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE `Part`
+  ADD CONSTRAINT `Part_cleaning_id_fkey` FOREIGN KEY (`cleaning_id`) REFERENCES `Cleaning` (`cleaning_id`) ON DELETE SET NULL ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
