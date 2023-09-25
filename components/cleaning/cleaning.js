@@ -9,7 +9,7 @@ import moment from "moment-timezone";
 import Spinner from "../ui/spinner";
 import DataTable from "./data-table";
 
-export default function Change() {
+export default function Cleaning() {
   const {
     data: cleaning,
     error,
