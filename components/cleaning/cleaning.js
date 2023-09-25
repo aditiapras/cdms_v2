@@ -18,7 +18,7 @@ import Spinner from "../ui/spinner";
 
 export default function Change() {
   const { data, error, isLoading } = useFetch(
-    `${process.env.NEXT_PUBLIC_URL}/api/cdms/cleaning`
+    `${process.env.NEXT_PUBLIC_API_URL}/cleaning`
   );
 
   if (error) return <div>failed to load</div>;

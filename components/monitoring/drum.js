@@ -16,7 +16,7 @@ import {
 
 export default function CarcassDrum({ drum, mesin }) {
   const { data, error, isLoading } = useFetch(
-    `${process.env.NEXT_PUBLIC_URL}/api/cdms/drums?id=${drum}`
+    `${process.env.NEXT_PUBLIC_API_URL}/drums?id=${drum}`
   );
 
   if (error) return null;

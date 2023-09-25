@@ -12,7 +12,7 @@ import Spinner from "../ui/spinner";
 
 export default function Change() {
   const { data, error, isLoading } = useFetch(
-    `${process.env.NEXT_PUBLIC_URL}/api/cdms/histories`
+    `${process.env.NEXT_PUBLIC_API_URL}/histories`
   );
 
   if (error) return <div>failed to load</div>;

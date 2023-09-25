@@ -7,7 +7,7 @@ import { useState } from "react";
 
 export default function CcDrum() {
   const { data, error, isLoading } = useFetch(
-    `${process.env.NEXT_PUBLIC_URL}/api/cdms/drums`
+    `${process.env.NEXT_PUBLIC_API_URL}/drums`
   );
 
   const [phase, setPhase] = useState("Phase 1");

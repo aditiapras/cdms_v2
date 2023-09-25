@@ -6,7 +6,7 @@ import { useState } from "react";
 
 export default function Monitoring() {
   const { data, error, isLoading } = useFetch(
-    `${process.env.NEXT_PUBLIC_URL}/api/cdms/monitoring`
+    `${process.env.NEXT_PUBLIC_API_URL}/monitoring`
   );
 
   const [phase, setPhase] = useState("Phase 1");

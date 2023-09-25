@@ -11,7 +11,7 @@ import Link from "next/link";
 
 export default function EachDrum({ id_drum }) {
   const { data, error, isLoading } = useFetch(
-    `${process.env.NEXT_PUBLIC_URL}/api/cdms/drums?id=${id_drum}`
+    `${process.env.NEXT_PUBLIC_API_URL}/drums?id=${id_drum}`
   );
 
   if (error) return <div>failed to load</div>;

@@ -24,7 +24,7 @@ export default function CleaningCC({ params }) {
     error,
     isLoading,
   } = useFetch(
-    `${process.env.NEXT_PUBLIC_URL}/api/cdms/drums?id=${params.cleaningId}`
+    `${process.env.NEXT_PUBLIC_API_URL}/drums?id=${params.cleaningId}`
   );
 
   if (drums == null) {

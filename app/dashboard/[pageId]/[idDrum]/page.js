@@ -25,7 +25,7 @@ export default function TurunCC({ params }) {
   }
 
   const { data, error, isLoading } = useFetch(
-    `${process.env.NEXT_PUBLIC_URL}/api/cdms/drums?id=${params.idDrum}`
+    `${process.env.NEXT_PUBLIC_API_URL}/drums?id=${params.idDrum}`
   );
 
   if (error) return <div>failed to load</div>;

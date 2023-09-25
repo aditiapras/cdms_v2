@@ -144,19 +144,19 @@ export default function InputNaik() {
     data: drums,
     error: error1,
     isLoading: loading1,
-  } = useFetch(`${process.env.NEXT_PUBLIC_URL}/api/cdms/drums`);
+  } = useFetch(`${process.env.NEXT_PUBLIC_API_URL}/drums`);
 
   const {
     data: machines,
     error: error2,
     isLoading: loading2,
-  } = useFetch(`${process.env.NEXT_PUBLIC_URL}/api/cdms/machine`);
+  } = useFetch(`${process.env.NEXT_PUBLIC_API_URL}/machines`);
 
   const {
     data: tubs,
     error: error3,
     isLoading: loading3,
-  } = useFetch(`${process.env.NEXT_PUBLIC_URL}/api/cdms/tub`);
+  } = useFetch(`${process.env.NEXT_PUBLIC_API_URL}/tubs`);
 
   if (error1 || error2 || error3) return <option value="Error">Error</option>;
   if (loading1 || loading2 || loading3) return <Spinner />;
