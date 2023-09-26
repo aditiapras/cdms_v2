@@ -55,6 +55,7 @@ export default function DataTable({ data: datas, columns }) {
                 <TableHead
                   key={header.id}
                   onClick={header.column.getToggleSortingHandler()}
+                  className="border w-40"
                 >
                   <p className="flex justify-between py-0.5 px-2 hover:cursor-pointer hover:bg-zinc-200 rounded-md">
                     <span>
@@ -80,7 +81,7 @@ export default function DataTable({ data: datas, columns }) {
           {table.getRowModel().rows.map((row) => (
             <TableRow key={row.id}>
               {row.getVisibleCells().map((cell) => (
-                <TableCell key={cell.id}>
+                <TableCell key={cell.id} className="border">
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </TableCell>
               ))}

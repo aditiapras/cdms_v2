@@ -2,31 +2,44 @@
 import CarcassDrum from "./drum";
 import { useFetch } from "@/lib/fetchHelper";
 import Spinner from "../ui/spinner";
-import { useState } from "react";
+import { machinePhase } from "@/lib/globalState";
 
 export default function Monitoring() {
+  const phase = machinePhase((state) => state.default);
+  const phase1 = machinePhase((state) => state.phase1);
+  const phase2 = machinePhase((state) => state.phase2);
+
   const { data, error, isLoading } = useFetch(
     `${process.env.NEXT_PUBLIC_API_URL}/monitoring`
   );
-
-  const [phase, setPhase] = useState("Phase 1");
 
   if (error) return <div>failed to load</div>;
   if (isLoading) return <Spinner />;
 
   return (
     <main className="flex flex-col h-full">
-      <div className="flex items-center gap-5 w-full p-5 border-b bg-zinc-50">
-        <p className="font-semibold">Monitoring</p>
-        <select
-          name="phase"
-          id="phase"
-          className="bg-zinc-100 hover:bg-zinc-200 p-2 rounded-md transition duration-200"
-          onChange={(e) => setPhase(e.target.value)}
+      <div className="flex items-center gap-5 w-full px-5 py-2 border-b bg-zinc-50">
+        <p className="font-semibold text-xl">Monitoring</p>
+        <button
+          onClick={phase1}
+          className={`${
+            phase == "Phase 1"
+              ? "bg-zinc-950 text-white"
+              : "text-zinc-300 hover:text-zinc-600"
+          } border px-3 py-1 rounded-md`}
         >
-          <option value="Phase 1">Phase 1</option>
-          <option value="Phase 2">Phase 2</option>
-        </select>
+          Phase 1
+        </button>
+        <button
+          onClick={phase2}
+          className={`${
+            phase == "Phase 2"
+              ? "bg-zinc-950 text-white"
+              : "text-zinc-300 hover:text-zinc-600"
+          } border px-3 py-1 rounded-md`}
+        >
+          Phase 2
+        </button>
       </div>
       <div className="grid grid-cols-5 gap-5 w-full p-5 bg-zinc-100 h-full">
         {data

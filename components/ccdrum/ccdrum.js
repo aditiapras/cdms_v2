@@ -4,13 +4,16 @@ import Spinner from "../ui/spinner";
 import { Separator } from "@/components/ui/separator";
 import EachDrum from "./eachDrum";
 import { useState } from "react";
+import { drumPhase } from "@/lib/globalState";
 
 export default function CcDrum() {
+  const phase = drumPhase((state) => state.default);
+  const phase1 = drumPhase((state) => state.phase1);
+  const phase2 = drumPhase((state) => state.phase2);
+
   const { data, error, isLoading } = useFetch(
     `${process.env.NEXT_PUBLIC_API_URL}/drums`
   );
-
-  const [phase, setPhase] = useState("Phase 1");
 
   const inches = [
     { id: 1, inch: 13 },
@@ -27,29 +30,44 @@ export default function CcDrum() {
   if (isLoading) return <Spinner />;
 
   return (
-    <main className="flex flex-col gap-5 w-full h-full bg-zinc-50 p-5">
-      <div className="flex gap-3 bg-zinc-50 -m-5 px-5 py-2 sticky top-[62px] justify-end z-10">
-        <p className="bg-green-200 px-3 py-0.5 rounded-full text-xs text-green-600">
-          OK
-        </p>
-        <p className="bg-amber-200 px-3 py-0.5 rounded-full text-xs text-amber-600">
-          Prepared to clean
-        </p>
-        <p className="bg-red-200 px-3 py-0.5 rounded-full text-xs text-red-600">
-          Change immidiately
-        </p>
+    <main className="flex flex-col gap-5 w-full h-full bg-zinc-100 p-5">
+      <div className="flex gap-3 bg-zinc-50 -m-5 px-5 py-2 sticky top-[62px] justify-between items-center z-10 border-b">
+        <div className="flex gap-3 bg-zinc-50 py-0.5 sticky top-[90px] z-10 items-center">
+          <p className="text-xl font-semibold mr-3">Carcass Drum</p>
+          <button
+            onClick={phase1}
+            className={`${
+              phase == "Phase 1"
+                ? "bg-zinc-950 text-white"
+                : "text-zinc-300 hover:text-zinc-600"
+            } border px-3 py-1 rounded-md`}
+          >
+            Phase 1
+          </button>
+          <button
+            onClick={phase2}
+            className={`${
+              phase == "Phase 2"
+                ? "bg-zinc-950 text-white"
+                : "text-zinc-300 hover:text-zinc-600"
+            } border px-3 py-1 rounded-md`}
+          >
+            Phase 2
+          </button>
+        </div>
+        <div className="flex gap-3">
+          <p className="bg-green-200 px-3 py-0.5 rounded-full text-xs text-green-600">
+            OK
+          </p>
+          <p className="bg-amber-200 px-3 py-0.5 rounded-full text-xs text-amber-600">
+            Prepared to clean
+          </p>
+          <p className="bg-red-200 px-3 py-0.5 rounded-full text-xs text-red-600">
+            Change immidiately
+          </p>
+        </div>
       </div>
-      <div className="flex gap-3 bg-zinc-50 py-2 sticky top-[90px] z-10">
-        <select
-          name="phase"
-          id="phase"
-          className="p-2 bg-zinc-100 hover:bg-zinc-200 transition duration-200 rounded-md"
-          onChange={(e) => setPhase(e.target.value)}
-        >
-          <option value="Phase 1">Phase 1</option>
-          <option value="Phase 2">Phase 2</option>
-        </select>
-      </div>
+
       <p className="text-2xl font-bold mt-5">PCR</p>
       <div className="grid grid-cols-8 gap-5">
         {inches.map((inch) => (

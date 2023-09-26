@@ -1,9 +1,8 @@
 "use client";
 
 import { useSession } from "next-auth/react";
-import { BiSolidDashboard } from "react-icons/bi";
+import { BiSolidDashboard, BiGitPullRequest } from "react-icons/bi";
 import { TbHeartRateMonitor } from "react-icons/tb";
-import { AiOutlineClear } from "react-icons/ai";
 import { GiOilDrum } from "react-icons/gi";
 import { BsFileEarmarkPlusFill } from "react-icons/bs";
 import { FaHistory } from "react-icons/fa";
@@ -77,11 +76,23 @@ export default function DashboardSession({ components }) {
               } text-4xl`}
             ></FaHistory>
           </Link>
+          <Link
+            href={"/dashboard/request"}
+            className="flex items-center bg-zinc-200 rounded-md p-2 hover:bg-zinc-300"
+          >
+            <BiGitPullRequest
+              className={`${
+                pathname === "/dashboard/request"
+                  ? "text-blue-600"
+                  : "text-zinc-400"
+              } text-4xl`}
+            ></BiGitPullRequest>
+          </Link>
         </div>
         <Logout />
       </div>
       <div className="flex w-full flex-col">
-        <div className="w-full h-16 shadow-md px-5 flex items-center justify-between sticky top-0 bg-white/60 backdrop-blur-md z-10">
+        <div className="w-full h-16 shadow-md px-5 flex items-center justify-between sticky top-0 bg-white/60 backdrop-blur-md z-20">
           <p className="text-2xl font-semibold">Dashboard</p>
           <p className="text-xs bg-green-100 text-green-700 p-1 rounded-md">
             Logged in as:{" "}

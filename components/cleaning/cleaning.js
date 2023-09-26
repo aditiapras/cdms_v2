@@ -46,7 +46,7 @@ export default function Cleaning() {
         return (
           <Popover>
             <PopoverTrigger>
-              <button className="px-5 py-1 border rounded-md hover:border-zinc-800">
+              <button className="px-5 py-0.5 border rounded-md hover:border-zinc-800">
                 View
               </button>
             </PopoverTrigger>

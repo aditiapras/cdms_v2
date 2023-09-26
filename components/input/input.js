@@ -13,6 +13,7 @@ import {
 } from "@/lib/postHelper";
 import { useSession } from "next-auth/react";
 import { postHistory } from "@/lib/updateHistory";
+import { inputPhase } from "@/lib/globalState";
 
 export default function InputNaik() {
   const { data: session } = useSession();
@@ -22,7 +23,11 @@ export default function InputNaik() {
   const [machineName, setMachineName] = useState("");
   const [age, setAge] = useState(false);
   const [success, setSuccess] = useState(false);
-  const [phase, setPhase] = useState("Phase 1");
+  const [fail, setFail] = useState(false);
+
+  const phase = inputPhase((state) => state.default);
+  const phase2 = inputPhase((state) => state.phase2);
+  const phase1 = inputPhase((state) => state.phase1);
 
   const {
     handleSubmit,
@@ -131,10 +136,17 @@ export default function InputNaik() {
           setMachine(true);
           setMachineName(data.building_mc);
         } else {
-          postDrum(data);
-          inputMonitoring();
-          postHistory(history);
-          complete();
+          if (phase != drumStatus.phase || phase != monitoring.phase) {
+            setFail(true);
+            setTimeout(() => {
+              setFail(false);
+            }, 2000);
+          } else {
+            postDrum(data);
+            inputMonitoring();
+            postHistory(history);
+            complete();
+          }
         }
       }
     }
@@ -191,22 +203,40 @@ export default function InputNaik() {
             </p>
           )}
 
+          {fail && (
+            <p className="bg-red-200 p-2 rounded-md text-red-500">
+              Drum/Mesin berbeda dengan Phase yang dipilih
+            </p>
+          )}
+
           {/* FORM TITLE */}
 
           <p className="font-semibold text-xl">Input Naik</p>
 
           <label htmlFor="phase">Phase</label>
-          <select
-            name="phase"
-            id="phase"
-            onChange={(e) => setPhase(e.target.value)}
-            className="bg-zinc-100 hover:bg-zinc-200 p-2 rounded-md transition duration-200"
-          >
-            <option value="Phase 1">Phase 1</option>
-            <option value="Phase 2">Phase 2</option>
-          </select>
+          <div className="flex gap-2">
+            <div
+              onClick={phase1}
+              className={`${
+                phase == "Phase 1"
+                  ? "bg-zinc-950 text-white"
+                  : "text-zinc-300 hover:text-zinc-600"
+              } border px-3 py-1 rounded-md cursor-pointer`}
+            >
+              Phase 1
+            </div>
+            <div
+              onClick={phase2}
+              className={`${
+                phase == "Phase 2"
+                  ? "bg-zinc-950 text-white"
+                  : "text-zinc-300 hover:text-zinc-600"
+              } border px-3 py-1 rounded-md cursor-pointer`}
+            >
+              Phase 2
+            </div>
+          </div>
 
-          {/* INPUT ID DRUM */}
           <label htmlFor="id_drum">ID Drum</label>
           <Controller
             name="id_drum"
