@@ -6,6 +6,7 @@ import Monitoring from "@/components/monitoring/monitoring";
 import InputNaik from "@/components/input/input";
 import CcDrum from "@/components/ccdrum/ccdrum";
 import HistoryCleaning from "@/components/cleaning/history";
+import Request from "@/components/request/request";
 
 export default async function DynamicDash({ params }) {
   const session = await getServerSession(authOptions);
@@ -24,6 +25,8 @@ export default async function DynamicDash({ params }) {
         <CcDrum />
       ) : params.pageId == "history" ? (
         <HistoryCleaning />
+      ) : params.pageId == "request" ? (
+        <Request></Request>
       ) : (
         params.pageId
       )}
