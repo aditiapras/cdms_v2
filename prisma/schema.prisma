@@ -77,3 +77,14 @@ model History {
   type        String   @db.VarChar(20)
   PIC         String   @db.VarChar(20)
 }
+
+model Request {
+  id            Int       @id @default(autoincrement())
+  name          String    @db.VarChar(255)
+  id_drum       String    @db.VarChar(20)
+  building_mc   String?   @db.VarChar(10)
+  type          String    @db.VarChar(20)
+  status        String?   @db.VarChar(20)
+  request_date  DateTime  @db.DateTime()
+  complete_date DateTime? @db.DateTime()
+}
