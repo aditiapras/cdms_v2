@@ -28,6 +28,9 @@ export default function RequestChange() {
     e.preventDefault();
     if (machine == "" || drum == "" || team == "" || type == "" || name == "") {
       setErrors(true);
+      setTimeout(() => {
+        setErrors(false);
+      }, 6000);
     } else {
       setErrors(false);
       const query = {
@@ -94,8 +97,9 @@ export default function RequestChange() {
         </DialogDescription>
       </DialogHeader>
       {errors && (
-        <p className="bg-red-100 p-1 text-sm rounded-md text-red-500">
-          Please fill all fields
+        <p className="bg-red-100 p-2 text-sm rounded-md text-red-500">
+          Harap cek kembali form, terutama bagian C/C Drum. Pastikan C/C Drum
+          yang dipilih sesuai dengan mesin yang sedang digunakan.
         </p>
       )}
       <div className="flex flex-col gap-2">
