@@ -85,6 +85,24 @@ app.post("/histories", (req, res) => {
   endpoint(req, res, method, route);
 });
 
+app.post("/requests", (req, res) => {
+  const method = "POST";
+  const route = "requests";
+  endpoint(req, res, method, route);
+});
+
+app.put("/requests", (req, res) => {
+  const method = "PUT";
+  const route = "requests";
+  endpoint(req, res, method, route);
+});
+
+app.get("/requests", (req, res) => {
+  const method = "GET";
+  const route = "requests";
+  endpoint(req, res, method, route);
+});
+
 app.listen(4000, () => {
   console.log("Server start on port 4000");
 });

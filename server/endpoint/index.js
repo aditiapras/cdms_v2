@@ -228,6 +228,47 @@ module.exports = endpoint = async (req, res, method, route) => {
       },
     });
     res.json(cleaning);
+  } else if (route == "requests") {
+    const { name, id_drum, building_mc, type, status, id } = req.body;
+    if (method == "GET") {
+      const query = req.query;
+      if (query.id) {
+        const data = await prisma.request.findMany({
+          where: {
+            id_drum: query.id,
+          },
+        });
+        res.json(data);
+      } else {
+        const data = await prisma.request.findMany();
+        res.json(data);
+      }
+    } else if (method == "POST") {
+      const request = await prisma.request.create({
+        data: {
+          name,
+          id_drum,
+          building_mc,
+          type,
+          status,
+          id,
+        },
+      });
+      res.json(request);
+    } else if (method == "PUT") {
+      const request = await prisma.request.update({
+        where: {
+          id: id,
+        },
+        data: {
+          status,
+          complete_date: moment().toISOString(),
+        },
+      });
+      res.json(request);
+    } else {
+      res.json({ error: "method not allowed" });
+    }
   } else {
     res.json({ error: "route not found" });
   }
