@@ -19,6 +19,12 @@ app.put("/drums", (req, res) => {
   endpoint(req, res, method, route);
 });
 
+app.post("/drums", (req, res) => {
+  const method = "POST";
+  const route = "drums";
+  endpoint(req, res, method, route);
+});
+
 app.put("/drums/cleaning", (req, res) => {
   const method = "PUT";
   const route = "drums/cleaning";

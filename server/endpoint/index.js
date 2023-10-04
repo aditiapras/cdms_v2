@@ -1,4 +1,4 @@
-const { PrismaClient } = require("@prisma/client");
+const { PrismaClient, Prisma } = require("@prisma/client");
 const prisma = new PrismaClient();
 const moment = require("moment-timezone");
 
@@ -56,6 +56,32 @@ module.exports = endpoint = async (req, res, method, route) => {
         res.json(turun);
       } else {
         res.json({ error: "method not allowed" });
+      }
+    } else if (method == "POST") {
+      const { id_drum, rim, type, phase, status } = req.body;
+      const input_date = moment().local().toISOString();
+      try {
+        const drum = await prisma.drum.create({
+          data: {
+            id_drum,
+            rim,
+            type,
+            phase,
+            status,
+            date_naik: input_date,
+            date_turun: input_date,
+          },
+        });
+        res.json(drum);
+      } catch (error) {
+        if (error instanceof Prisma.PrismaClientKnownRequestError) {
+          if (error.code === "P2002") {
+            return res.json({
+              error: true,
+              message: "Terdapat ID yang sama untuk ID Drum ini.",
+            });
+          }
+        }
       }
     }
   } else if (route == "machines") {
@@ -251,7 +277,8 @@ module.exports = endpoint = async (req, res, method, route) => {
           building_mc,
           type,
           status,
-          id,
+          request_date: moment().toISOString(),
+          complete_date: moment().toISOString(),
         },
       });
       res.json(request);
