@@ -1,5 +1,5 @@
 import React from "react";
-import DashboardSession from "@/components/dashboard/session";
+import DashboardSession from "@/components/dashboard/dashboard-session";
 
 export default function Layout({ children }) {
   return (

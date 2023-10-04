@@ -1,4 +1,4 @@
-import CreateAccount from "./register";
+import CreateAccount from "./create-account";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]/route";
 import { redirect } from "next/navigation";

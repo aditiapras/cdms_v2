@@ -3,6 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { Button } from "./ui/button";
 
 export default function Login() {
   const [show, setShow] = useState(false);
@@ -107,12 +108,7 @@ export default function Login() {
                 Show Password
               </label>
             </div>
-            <button
-              type="submit"
-              className="mt-7 text-sm bg-zinc-950 text-white py-2 rounded-md hover:bg-zinc-700 transition duration-200"
-            >
-              Sign In
-            </button>
+            <Button type="submit">Sign In</Button>
           </form>
         </div>
         <p className="stiky bottom-0 mt-5 text-xs text-zinc-400">
