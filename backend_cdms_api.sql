@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 02, 2023 at 11:46 AM
+-- Generation Time: Oct 05, 2023 at 10:25 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -58,7 +58,11 @@ INSERT INTO `cleaning` (`cleaning_id`, `id_drum`, `pic`, `date_cleaning`) VALUES
 (21, 'I16P-H21B-06', 'Aditia Prasetian', '2023-09-29 06:42:54'),
 (22, 'I16P-H21B-10', 'Aditia Prasetian', '2023-09-29 06:43:01'),
 (23, 'I16P-H21B-11', 'Aditia Prasetian', '2023-09-29 06:43:07'),
-(24, 'I16L-H30A-29', 'Aditia Prasetian', '2023-09-29 06:47:12');
+(24, 'I16L-H30A-29', 'Aditia Prasetian', '2023-09-29 06:47:12'),
+(25, 'I13P-H19B-01', 'Aditia Prasetian', '2023-10-03 03:13:53'),
+(26, 'I13P-H19B-02', 'Aditia Prasetian', '2023-10-03 03:13:55'),
+(27, 'I13P-H19A-02', 'Aditia Prasetian', '2023-10-05 03:29:31'),
+(28, 'I13P-H19A-03', 'Aditia Prasetian', '2023-10-05 03:29:40');
 
 -- --------------------------------------------------------
 
@@ -84,16 +88,16 @@ CREATE TABLE `drum` (
 --
 
 INSERT INTO `drum` (`id_drum`, `rim`, `type`, `status`, `building_mc`, `age`, `date_naik`, `date_turun`, `reason`, `phase`) VALUES
-('I13P-H19A-01', 13, 'PCR', 'unuse', '', 0, '2023-09-26 04:29:32', '2023-09-26 04:29:43', 'Ganti Size', 'Phase 1'),
-('I13P-H19A-02', 13, 'PCR', 'use', 'H1101', 0, '2023-09-18 06:34:43', '2023-09-18 06:19:49', '', 'Phase 1'),
-('I13P-H19A-03', 13, 'PCR', 'use', 'H1101', 0, '2023-09-18 06:39:20', '2023-09-18 06:13:56', '', 'Phase 1'),
-('I13P-H19A-04', 13, 'PCR', 'unuse', '', 0, '2023-09-22 06:04:37', '2023-09-22 06:04:37', '', 'Phase 1'),
-('I13P-H19A-05', 13, 'PCR', 'unuse', '', 0, '2023-09-13 11:35:08', '2023-09-13 11:35:08', NULL, 'Phase 1'),
-('I13P-H19A-06', 13, 'PCR', 'unuse', '', 0, '2023-09-13 11:35:08', '2023-09-13 11:35:08', NULL, 'Phase 1'),
-('I13P-H19A-07', 13, 'PCR', 'unuse', '', 0, '2023-09-13 11:35:08', '2023-09-13 11:35:08', NULL, 'Phase 1'),
+('I13P-H19A-01', 13, 'PCR', 'unuse', '', 0, '2023-10-04 07:01:28', '2023-10-05 02:57:30', 'Ganti Size', 'Phase 1'),
+('I13P-H19A-02', 13, 'PCR', 'unuse', '', 0, '2023-10-05 03:29:31', '2023-10-05 03:29:31', '', 'Phase 1'),
+('I13P-H19A-03', 13, 'PCR', 'unuse', '', 0, '2023-10-05 03:29:40', '2023-10-05 03:29:40', '', 'Phase 1'),
+('I13P-H19A-04', 13, 'PCR', 'unuse', '', 0, '2023-10-04 07:02:05', '2023-10-05 02:57:34', 'Ganti Size', 'Phase 1'),
+('I13P-H19A-05', 13, 'PCR', 'unuse', '', 0, '2023-10-05 02:54:54', '2023-10-05 02:57:22', 'Ganti Size', 'Phase 1'),
+('I13P-H19A-06', 13, 'PCR', 'unuse', '', 0, '2023-10-05 02:55:36', '2023-10-05 02:57:26', 'Ganti Size', 'Phase 1'),
+('I13P-H19A-07', 13, 'PCR', 'unuse', '', 0, '2023-10-05 02:56:47', '2023-10-05 02:57:15', 'Ganti Size', 'Phase 1'),
 ('I13P-H19A-08', 13, 'PCR', 'unuse', '', 0, '2023-09-13 11:35:08', '2023-09-13 11:35:08', NULL, 'Phase 1'),
-('I13P-H19B-01', 13, 'PCR', 'unuse', '', 3, '2023-09-26 04:28:47', '2023-09-26 04:29:05', 'Ganti Size', 'Phase 2'),
-('I13P-H19B-02', 13, 'PCR', 'unuse', '', 3, '2023-09-13 11:35:14', '2023-09-15 14:08:56', 'Ganti Inch', 'Phase 2'),
+('I13P-H19B-01', 13, 'PCR', 'unuse', '', 0, '2023-10-04 07:55:05', '2023-10-04 07:56:27', 'Ganti Size', 'Phase 2'),
+('I13P-H19B-02', 13, 'PCR', 'unuse', '', 0, '2023-10-03 03:13:55', '2023-10-03 03:13:55', '', 'Phase 2'),
 ('I13P-H19B-03', 13, 'PCR', 'unuse', '', 0, '2023-09-13 11:35:57', '2023-09-13 11:39:15', 'Bladder Bocor', 'Phase 2'),
 ('I13P-H19B-04', 13, 'PCR', 'unuse', '', 0, '2023-09-26 04:23:03', '2023-09-26 04:23:17', 'Ganti Size', 'Phase 2'),
 ('I13P-H19B-05', 13, 'PCR', 'unuse', '', 0, '2023-09-06 13:04:08', '2023-09-04 22:55:42', NULL, 'Phase 2'),
@@ -196,12 +200,12 @@ INSERT INTO `drum` (`id_drum`, `rim`, `type`, `status`, `building_mc`, `age`, `d
 ('I16L-H30A-32', 16, 'LTR', 'unuse', '', 0, '2023-09-13 11:35:08', '2023-09-13 11:35:08', NULL, 'Phase 1'),
 ('I16L-H30A-33', 16, 'LTR', 'unuse', '', 0, '2023-09-13 11:35:08', '2023-09-13 11:35:08', NULL, 'Phase 1'),
 ('I16L-H30A-34', 16, 'LTR', 'unuse', '', 0, '2023-09-13 11:35:08', '2023-09-13 11:35:08', NULL, 'Phase 1'),
-('I16L-H30B-19', 16, 'LTR', 'unuse', '', 0, '2023-09-06 10:53:35', '2023-09-04 20:10:01', NULL, 'Phase 2'),
+('I16L-H30B-19', 16, 'LTR', 'use', 'H1704', 0, '2023-10-04 03:17:14', '2023-10-04 03:16:33', 'Ganti Size', 'Phase 2'),
 ('I16L-H30B-20', 16, 'LTR', 'unuse', '', 0, '2023-09-25 14:02:11', '2023-09-25 14:02:11', '', 'Phase 2'),
 ('I16L-H30B-21', 16, 'LTR', 'unuse', '', 0, '2023-09-06 10:53:35', '2023-09-04 20:10:01', NULL, 'Phase 2'),
 ('I16L-H30B-22', 16, 'LTR', 'unuse', '', 0, '2023-09-06 10:53:35', '2023-09-04 20:10:01', NULL, 'Phase 2'),
 ('I16L-H30B-23', 16, 'LTR', 'unuse', '', 0, '2023-09-06 10:53:35', '2023-09-04 20:10:01', NULL, 'Phase 2'),
-('I16L-H30B-24', 16, 'LTR', 'unuse', '', 0, '2023-09-25 14:02:23', '2023-09-25 14:02:23', '', 'Phase 2'),
+('I16L-H30B-24', 16, 'LTR', 'use', 'H1704', 0, '2023-10-04 03:17:03', '2023-10-04 03:16:38', 'Ganti Size', 'Phase 2'),
 ('I16P-H21A-01', 16, 'PCR', 'unuse', '', 0, '2023-09-13 11:35:08', '2023-09-13 11:35:08', NULL, 'Phase 1'),
 ('I16P-H21A-02', 16, 'PCR', 'unuse', '', 0, '2023-09-13 11:35:08', '2023-09-13 11:35:08', NULL, 'Phase 1'),
 ('I16P-H21A-03', 16, 'PCR', 'unuse', '', 0, '2023-09-13 11:35:08', '2023-09-13 11:35:08', NULL, 'Phase 1'),
@@ -230,16 +234,16 @@ INSERT INTO `drum` (`id_drum`, `rim`, `type`, `status`, `building_mc`, `age`, `d
 ('I16P-H21A-26', 16, 'PCR', 'unuse', '', 0, '2023-09-13 11:35:08', '2023-09-13 11:35:08', NULL, 'Phase 1'),
 ('I16P-H21A-27', 16, 'PCR', 'unuse', '', 0, '2023-09-13 11:35:08', '2023-09-13 11:35:08', NULL, 'Phase 1'),
 ('I16P-H21A-28', 16, 'PCR', 'unuse', '', 0, '2023-09-13 11:35:08', '2023-09-13 11:35:08', NULL, 'Phase 1'),
-('I16P-H21B-01', 16, 'PCR', 'unuse', '', 0, '2023-09-29 06:42:19', '2023-09-29 06:42:19', '', 'Phase 2'),
-('I16P-H21B-02', 16, 'PCR', 'unuse', '', 0, '2023-09-29 06:42:28', '2023-09-29 06:42:28', '', 'Phase 2'),
-('I16P-H21B-03', 16, 'PCR', 'unuse', '', 0, '2023-09-29 06:42:34', '2023-09-29 06:42:34', '', 'Phase 2'),
-('I16P-H21B-04', 16, 'PCR', 'unuse', '', 0, '2023-09-29 06:42:42', '2023-09-29 06:42:42', '', 'Phase 2'),
+('I16P-H21B-01', 16, 'PCR', 'use', 'H1502', 0, '2023-10-03 04:02:46', '2023-09-29 06:42:19', '', 'Phase 2'),
+('I16P-H21B-02', 16, 'PCR', 'use', 'H1502', 0, '2023-10-03 04:02:54', '2023-09-29 06:42:28', '', 'Phase 2'),
+('I16P-H21B-03', 16, 'PCR', 'use', 'H1601', 0, '2023-10-04 03:03:09', '2023-09-29 06:42:34', '', 'Phase 2'),
+('I16P-H21B-04', 16, 'PCR', 'use', 'H1601', 0, '2023-10-04 03:03:21', '2023-09-29 06:42:42', '', 'Phase 2'),
 ('I16P-H21B-05', 16, 'PCR', 'unuse', '', 0, '2023-09-29 06:42:49', '2023-09-29 06:42:49', '', 'Phase 2'),
 ('I16P-H21B-06', 16, 'PCR', 'unuse', '', 0, '2023-09-29 06:42:54', '2023-09-29 06:42:54', '', 'Phase 2'),
 ('I16P-H21B-07', 16, 'PCR', 'unuse', '', 0, '2023-09-06 10:53:35', '2023-09-04 20:10:01', NULL, 'Phase 2'),
 ('I16P-H21B-08', 16, 'PCR', 'unuse', '', 0, '2023-09-06 10:53:35', '2023-09-04 20:10:01', NULL, 'Phase 2'),
 ('I16P-H21B-09', 16, 'PCR', 'unuse', '', 0, '2023-09-06 10:53:35', '2023-09-04 20:10:01', NULL, 'Phase 2'),
-('I16P-H21B-10', 16, 'PCR', 'unuse', '', 0, '2023-09-29 06:43:01', '2023-09-29 06:43:01', '', 'Phase 2'),
+('I16P-H21B-10', 16, 'PCR', 'use', 'H1804', 0, '2023-10-04 07:03:04', '2023-09-29 06:43:01', '', 'Phase 2'),
 ('I16P-H21B-11', 16, 'PCR', 'unuse', '', 0, '2023-09-29 06:43:07', '2023-09-29 06:43:07', '', 'Phase 2'),
 ('I16P-H21B-12', 16, 'PCR', 'unuse', '', 0, '2023-09-06 10:53:35', '2023-09-04 20:10:01', NULL, 'Phase 2'),
 ('I16P-H21B-13', 16, 'PCR', 'unuse', '', 0, '2023-09-06 10:53:35', '2023-09-04 20:10:01', NULL, 'Phase 2'),
@@ -370,7 +374,32 @@ INSERT INTO `history` (`id`, `id_drum`, `building_mc`, `age`, `reason`, `PIC`, `
 (33, 'I16P-H21B-05', 'H1804', 16, 'Cleaning', 'Aditia Prasetian', '2023-09-29 06:41:14', 'Turun'),
 (34, 'I16P-H21B-06', 'H1804', 16, 'Cleaning', 'Aditia Prasetian', '2023-09-29 06:41:18', 'Turun'),
 (35, 'I16P-H21B-10', 'H1805', 16, 'Cleaning', 'Aditia Prasetian', '2023-09-29 06:41:23', 'Turun'),
-(36, 'I16P-H21B-11', 'H1805', 16, 'Cleaning', 'Aditia Prasetian', '2023-09-29 06:41:29', 'Turun');
+(36, 'I16P-H21B-11', 'H1805', 16, 'Cleaning', 'Aditia Prasetian', '2023-09-29 06:41:29', 'Turun'),
+(37, 'I16L-H30B-19', 'H1704', 0, '-', 'Aditia Prasetian', '2023-10-03 04:01:50', 'Naik'),
+(38, 'I16L-H30B-24', 'H1704', 0, '-', 'Aditia Prasetian', '2023-10-03 04:02:20', 'Naik'),
+(39, 'I16P-H21B-01', 'H1502', 0, '-', 'Aditia Prasetian', '2023-10-03 04:02:46', 'Naik'),
+(40, 'I16P-H21B-02', 'H1502', 0, '-', 'Aditia Prasetian', '2023-10-03 04:02:54', 'Naik'),
+(41, 'I16P-H21B-03', 'H1601', 0, '-', 'Aditia Prasetian', '2023-10-04 03:03:09', 'Naik'),
+(42, 'I16P-H21B-04', 'H1601', 0, '-', 'Aditia Prasetian', '2023-10-04 03:03:21', 'Naik'),
+(43, 'I16L-H30B-19', 'H1704', 0, 'Ganti Size', 'Aditia Prasetian', '2023-10-04 03:16:33', 'Turun'),
+(44, 'I16L-H30B-24', 'H1704', 0, 'Ganti Size', 'Aditia Prasetian', '2023-10-04 03:16:38', 'Turun'),
+(45, 'I16L-H30B-24', 'H1704', 0, '-', 'Aditia Prasetian', '2023-10-04 03:17:03', 'Naik'),
+(46, 'I16L-H30B-19', 'H1704', 0, '-', 'Aditia Prasetian', '2023-10-04 03:17:14', 'Naik'),
+(47, 'I13P-H19A-01', 'H1102', 0, '-', 'Aditia Prasetian', '2023-10-04 07:01:28', 'Naik'),
+(48, 'I13P-H19A-04', 'H1102', 0, '-', 'Aditia Prasetian', '2023-10-04 07:02:05', 'Naik'),
+(49, 'I16P-H21B-10', 'H1804', 0, '-', 'Aditia Prasetian', '2023-10-04 07:03:04', 'Naik'),
+(50, 'I13P-H19B-01', 'H1501', 0, '-', 'Aditia Prasetian', '2023-10-04 07:55:05', 'Naik'),
+(51, 'I13P-H19B-01', 'H1501', 0, 'Ganti Size', 'Aditia Prasetian', '2023-10-04 07:56:27', 'Turun'),
+(52, 'I13P-H19A-05', 'H1103', 0, '-', 'Aditia Prasetian', '2023-10-05 02:54:54', 'Naik'),
+(53, 'I13P-H19A-06', 'H1103', 0, '-', 'Aditia Prasetian', '2023-10-05 02:55:36', 'Naik'),
+(54, 'I13P-H19A-07', 'H1104', 0, '-', 'Aditia Prasetian', '2023-10-05 02:56:47', 'Naik'),
+(55, 'I13P-H19A-07', 'H1104', 0, 'Ganti Size', 'Aditia Prasetian', '2023-10-05 02:57:15', 'Turun'),
+(56, 'I13P-H19A-05', 'H1103', 0, 'Ganti Size', 'Aditia Prasetian', '2023-10-05 02:57:22', 'Turun'),
+(57, 'I13P-H19A-06', 'H1103', 0, 'Ganti Size', 'Aditia Prasetian', '2023-10-05 02:57:26', 'Turun'),
+(58, 'I13P-H19A-01', 'H1102', 0, 'Ganti Size', 'Aditia Prasetian', '2023-10-05 02:57:30', 'Turun'),
+(59, 'I13P-H19A-04', 'H1102', 0, 'Ganti Size', 'Aditia Prasetian', '2023-10-05 02:57:34', 'Turun'),
+(60, 'I13P-H19A-02', 'H1101', 16, 'Cleaning', 'Aditia Prasetian', '2023-10-05 02:57:39', 'Turun'),
+(61, 'I13P-H19A-03', 'H1101', 16, 'Cleaning', 'Aditia Prasetian', '2023-10-05 02:57:46', 'Turun');
 
 -- --------------------------------------------------------
 
@@ -449,7 +478,7 @@ CREATE TABLE `monitoring` (
 --
 
 INSERT INTO `monitoring` (`building_mc`, `id_left`, `id_right`, `status`, `phase`) VALUES
-('H1101', 'I13P-H19A-02', 'I13P-H19A-03', 'use', 'Phase 1'),
+('H1101', '', '', 'unuse', 'Phase 1'),
 ('H1102', '', '', 'unuse', 'Phase 1'),
 ('H1103', '', '', 'unuse', 'Phase 1'),
 ('H1104', '', '', 'unuse', 'Phase 1'),
@@ -470,11 +499,11 @@ INSERT INTO `monitoring` (`building_mc`, `id_left`, `id_right`, `status`, `phase
 ('H1404', '', '', 'unuse', 'Phase 1'),
 ('H1405', '', '', 'unuse', 'Phase 1'),
 ('H1501', '', '', 'unuse', 'Phase 2'),
-('H1502', '', '', 'unuse', 'Phase 2'),
+('H1502', 'I16P-H21B-01', 'I16P-H21B-02', 'use', 'Phase 2'),
 ('H1503', '', '', 'unuse', 'Phase 2'),
 ('H1504', '', '', 'unuse', 'Phase 2'),
 ('H1505', '', '', 'unuse', 'Phase 2'),
-('H1601', '', '', 'unuse', 'Phase 2'),
+('H1601', 'I16P-H21B-03', 'I16P-H21B-04', 'use', 'Phase 2'),
 ('H1602', '', '', 'unuse', 'Phase 2'),
 ('H1603', '', '', 'unuse', 'Phase 2'),
 ('H1604', '', '', 'unuse', 'Phase 2'),
@@ -482,12 +511,12 @@ INSERT INTO `monitoring` (`building_mc`, `id_left`, `id_right`, `status`, `phase
 ('H1701', '', '', 'unuse', 'Phase 2'),
 ('H1702', '', '', 'unuse', 'Phase 2'),
 ('H1703', '', '', 'unuse', 'Phase 2'),
-('H1704', '', '', 'unuse', 'Phase 2'),
+('H1704', 'I16L-H30B-24', 'I16L-H30B-19', 'use', 'Phase 2'),
 ('H1705', '', '', 'unuse', 'Phase 2'),
 ('H1801', '', '', 'unuse', 'Phase 2'),
 ('H1802', '', '', 'unuse', 'Phase 2'),
 ('H1803', '', '', 'unuse', 'Phase 2'),
-('H1804', '', '', 'unuse', 'Phase 2'),
+('H1804', 'I16P-H21B-10', '', 'use', 'Phase 2'),
 ('H1805', '', '', 'unuse', 'Phase 2');
 
 -- --------------------------------------------------------
@@ -749,7 +778,47 @@ INSERT INTO `part` (`id`, `name`, `cleaning_id`, `change`, `qty`, `status`) VALU
 (237, 'Seal O Ring', 24, 'No', 0, 'OK'),
 (238, 'Bolt Disc', 24, 'No', 0, 'OK'),
 (239, 'Cylinder Spring', 24, 'No', 0, 'OK'),
-(240, 'Thread & Screw', 24, 'No', 0, 'OK');
+(240, 'Thread & Screw', 24, 'No', 0, 'OK'),
+(241, 'Rubber Band', 25, 'No', 0, 'OK'),
+(242, 'Spring Finger', 25, 'No', 0, 'OK'),
+(243, 'Bead Lock', 25, 'No', 0, 'OK'),
+(244, 'Shoulder Finger', 25, 'No', 0, 'OK'),
+(245, 'Turn Up Bladder', 25, 'No', 0, 'OK'),
+(246, 'Check & Valve', 25, 'No', 0, 'OK'),
+(247, 'Seal O Ring', 25, 'No', 0, 'OK'),
+(248, 'Bolt Disc', 25, 'No', 0, 'OK'),
+(249, 'Cylinder Spring', 25, 'No', 0, 'OK'),
+(250, 'Thread & Screw', 25, 'No', 0, 'OK'),
+(251, 'Rubber Band', 26, 'No', 0, 'OK'),
+(252, 'Spring Finger', 26, 'No', 0, 'OK'),
+(253, 'Bead Lock', 26, 'No', 0, 'OK'),
+(254, 'Shoulder Finger', 26, 'No', 0, 'OK'),
+(255, 'Turn Up Bladder', 26, 'No', 0, 'OK'),
+(256, 'Check & Valve', 26, 'No', 0, 'OK'),
+(257, 'Seal O Ring', 26, 'No', 0, 'OK'),
+(258, 'Bolt Disc', 26, 'No', 0, 'OK'),
+(259, 'Cylinder Spring', 26, 'No', 0, 'OK'),
+(260, 'Thread & Screw', 26, 'No', 0, 'OK'),
+(261, 'Rubber Band', 27, 'No', 0, 'OK'),
+(262, 'Spring Finger', 27, 'No', 0, 'OK'),
+(263, 'Bead Lock', 27, 'No', 0, 'OK'),
+(264, 'Shoulder Finger', 27, 'No', 0, 'OK'),
+(265, 'Turn Up Bladder', 27, 'Yes', 1, 'NG'),
+(266, 'Check & Valve', 27, 'No', 0, 'OK'),
+(267, 'Seal O Ring', 27, 'No', 0, 'OK'),
+(268, 'Bolt Disc', 27, 'No', 0, 'OK'),
+(269, 'Cylinder Spring', 27, 'No', 0, 'OK'),
+(270, 'Thread & Screw', 27, 'No', 0, 'OK'),
+(271, 'Rubber Band', 28, 'No', 0, 'OK'),
+(272, 'Spring Finger', 28, 'No', 0, 'OK'),
+(273, 'Bead Lock', 28, 'No', 0, 'OK'),
+(274, 'Shoulder Finger', 28, 'No', 0, 'OK'),
+(275, 'Turn Up Bladder', 28, 'Yes', 1, 'NG'),
+(276, 'Check & Valve', 28, 'No', 0, 'OK'),
+(277, 'Seal O Ring', 28, 'No', 0, 'OK'),
+(278, 'Bolt Disc', 28, 'No', 0, 'OK'),
+(279, 'Cylinder Spring', 28, 'No', 0, 'OK'),
+(280, 'Thread & Screw', 28, 'No', 0, 'OK');
 
 -- --------------------------------------------------------
 
@@ -775,7 +844,16 @@ CREATE TABLE `request` (
 INSERT INTO `request` (`id`, `name`, `id_drum`, `building_mc`, `type`, `status`, `request_date`, `complete_date`) VALUES
 (1, 'Aditia Prasetian', 'I13P-H19A-02', 'H1101', 'Change', 'Complete', '2023-10-02 03:48:39', '2023-10-02 04:08:42'),
 (2, 'Aditia Prasetian', 'I13P-H19A-02', 'H1101', 'Cleaning', 'Complete', '2023-10-02 03:58:56', '2023-10-02 04:09:53'),
-(3, 'Aditia Prasetian', 'I13P-H19A-03', 'H1101', 'Change C/C Drum', 'Complete', '2023-10-02 07:17:41', '2023-10-02 09:44:02');
+(3, 'Aditia Prasetian', 'I13P-H19A-03', 'H1101', 'Change', 'Complete', '2023-10-02 07:17:41', '2023-10-03 03:12:56'),
+(4, 'Haryanto', 'I13P-H19A-02', 'H1101', 'Change C/C Drum', 'Complete', '2023-10-03 03:26:44', '2023-10-03 03:30:37'),
+(5, 'Owi', 'I13P-H19A-03', 'H1101', 'Change C/C Drum', 'Complete', '2023-10-03 03:33:27', '2023-10-03 03:58:19'),
+(6, 'Haryanto', 'I13P-H19A-02', NULL, 'Cleaning C/C Drum', 'Complete', '2023-10-03 03:36:07', '2023-10-03 03:58:28'),
+(7, 'Aditia Prasetian', 'I13P-H19A-03', 'H1101', 'Change C/C Drum', 'Complete', '2023-10-03 03:58:49', '2023-10-03 04:01:22'),
+(8, 'Aditia Prasetian', 'I13P-H19A-03', NULL, 'Cleaning C/C Drum', 'Complete', '2023-10-03 03:59:24', '2023-10-03 04:01:26'),
+(9, 'Aditia Prasetian', 'I16L-H30B-24', NULL, 'Cleaning C/C Drum', 'Complete', '2023-10-03 03:59:52', '2023-10-03 04:01:29'),
+(10, 'Aditia Prasetian', 'I16L-H30B-20', NULL, 'Cleaning C/C Drum', 'Complete', '2023-10-03 04:00:09', '2023-10-03 04:01:06'),
+(11, 'Aditia Prasetian', 'I13P-H19A-02', 'H1101', 'Change C/C Drum', 'Complete', '2023-10-03 04:00:38', '2023-10-03 04:01:19'),
+(12, 'Aditia Prasetian', 'I13P-H19A-02', NULL, 'Cleaning C/C Drum', 'Complete', '2023-10-05 03:27:16', '2023-10-05 03:29:49');
 
 -- --------------------------------------------------------
 
@@ -937,25 +1015,25 @@ ALTER TABLE `_prisma_migrations`
 -- AUTO_INCREMENT for table `cleaning`
 --
 ALTER TABLE `cleaning`
-  MODIFY `cleaning_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `cleaning_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `history`
 --
 ALTER TABLE `history`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT for table `part`
 --
 ALTER TABLE `part`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=241;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=281;
 
 --
 -- AUTO_INCREMENT for table `request`
 --
 ALTER TABLE `request`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `tub`
