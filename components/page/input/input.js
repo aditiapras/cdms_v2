@@ -15,7 +15,7 @@ import { useSession } from "next-auth/react";
 import { postHistory } from "@/lib/api-call/updateHistory";
 import { inputPhase } from "@/lib/global-state/globalState";
 import { Button } from "@/components/ui/button";
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster, toast } from "sonner";
 
 export default function InputNaik() {
   const { data: session } = useSession();
@@ -60,12 +60,7 @@ export default function InputNaik() {
     };
 
     const complete = () => {
-      setMachine(false);
       setMachineName(data.building_mc);
-      setSuccess(true);
-      setTimeout(() => {
-        setSuccess(false);
-      }, 2000);
       toast.success(`Success, Mesin ${data.building_mc} berhasil digunakan.`);
       resetForm();
       console.log("Success");
@@ -181,7 +176,7 @@ export default function InputNaik() {
 
   return (
     <main className="flex flex-col items-center justify-center h-full py-7 bg-zinc-100">
-      <Toaster position="bottom-right" reverseOrder={false} />
+      <Toaster position="bottom-right" richColors closeButton expand={true} />
       <div className="">
         <form
           onSubmit={handleSubmit(onSubmit)}
