@@ -3,9 +3,11 @@ import { useState } from "react";
 import Link from "next/link";
 import axios from "axios";
 import { useForm } from "react-hook-form";
-import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
+import { toast, Toaster } from "sonner";
+import { BiLoaderCircle } from "react-icons/bi";
+
 export default function CreateAccount() {
   const {
     register,
@@ -22,27 +24,35 @@ export default function CreateAccount() {
   };
 
   const [show, setShow] = useState(false);
-  const [exist, setExist] = useState(false);
-  const [success, setSuccess] = useState(false);
+  const [getLoading, setGetLoading] = useState(false);
+
+  const onLoading = (status) => {
+    setGetLoading(true);
+    setTimeout(() => {
+      if (status == true) {
+        toast.error("NIK sudah terdaftar");
+        setGetLoading(false);
+      } else {
+        toast.success("Akun berhasil didaftarkan");
+        setGetLoading(false);
+        resetForm();
+      }
+    }, 2000);
+  };
 
   const onSubmit = (data) => {
     try {
       axios({
         method: "POST",
-        url: `${process.env.NEXT_PUBLIC_URL}/api/register`,
+        url: `${process.env.NEXT_PUBLIC_API}/api/register`,
         data,
       }).then((res) => {
         if (res.data.registered === false) {
-          setExist(true);
-          setTimeout(() => {
-            setExist(false);
-          }, 5000);
+          const status = true;
+          onLoading(status);
         } else {
-          setSuccess(true);
-          setTimeout(() => {
-            setSuccess(false);
-          }, 2000);
-          resetForm();
+          const status = false;
+          onLoading(status);
         }
       });
     } catch (error) {
@@ -53,6 +63,7 @@ export default function CreateAccount() {
   return (
     <>
       <main className="w-full min-h-screen flex flex-col items-center justify-center p-10 sm:px-20 md:px-0 xl:p-0 bg-zinc-10">
+        <Toaster position="top-center" richColors closeButton />
         <div className="p-8 flex flex-col gap-5 border rounded-md w-full md:w-1/2 xl:w-1/3 2xl:w-1/4 bg-white">
           <div className="flex flex-col gap-2">
             <p className="text-2xl font-semibold">Create Account</p>
@@ -62,11 +73,6 @@ export default function CreateAccount() {
                 Sign In
               </Link>
             </p>
-            {success && (
-              <p className="text-xs mt-5 -mb-5 text-green-600 bg-green-200 rounded-md py-2 px-2">
-                Akun berhasil didaftarkan
-              </p>
-            )}
           </div>
 
           <form
@@ -81,6 +87,7 @@ export default function CreateAccount() {
               name="nik"
               id="nik"
               placeholder="NIK"
+              disabled={getLoading}
               className="px-2 py-1.5 bg-zinc-50 rounded-md border focus-visible:outline-1 focus-visible:outline-offset-0 focus-visible:outline-zinc-400"
               {...register("nik", {
                 required: "NIK tidak boleh kosong",
@@ -101,11 +108,6 @@ export default function CreateAccount() {
                 NIK maksimal 8 karakter
               </p>
             )}
-            {exist === true && (
-              <p className="text-xs text-red-500 bg-red-100 px-2 rounded-md py-0.5 -mt-1">
-                NIK sudah terdaftar
-              </p>
-            )}
 
             <label htmlFor="username" className="text-sm">
               Name
@@ -115,6 +117,7 @@ export default function CreateAccount() {
               name="username"
               id="username"
               placeholder="Name"
+              disabled={getLoading}
               className="px-2 py-1.5 bg-zinc-50 rounded-md border focus-visible:outline-1 focus-visible:outline-offset-0 focus-visible:outline-zinc-400"
               {...register("username", {
                 required: "Name tidak boleh kosong",
@@ -134,6 +137,7 @@ export default function CreateAccount() {
               name="password"
               id="password"
               placeholder="Password"
+              disabled={getLoading}
               className="px-2 py-1.5 bg-zinc-50 rounded-md border focus-visible:outline-1 focus-visible:outline-offset-0 focus-visible:outline-zinc-400"
               {...register("password", {
                 required: "Password tidak boleh kosong",
@@ -151,6 +155,7 @@ export default function CreateAccount() {
             <select
               name="workgroup"
               id="workgroup"
+              disabled={getLoading}
               className="px-2 py-1.5 bg-zinc-50 rounded-md border focus-visible:outline-1 focus-visible:outline-offset-0 focus-visible:outline-zinc-400"
               {...register("workgroup", {
                 required: "Workgroup belum dipilih",
@@ -173,10 +178,17 @@ export default function CreateAccount() {
               <Checkbox id="show" onCheckedChange={() => setShow(!show)} />
               <Label htmlFor="show">Show Password</Label>
             </div>
-
-            <Button type="submit" className="mt-5">
-              Sign Up
-            </Button>
+            <button
+              disabled={getLoading}
+              className="mt-5 flex items-center justify-center px-4 py-2 bg-zinc-950 text-white rounded-md hover:bg-zinc-800 disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              {getLoading && (
+                <p className="flex items-center justify-center gap-2">
+                  <BiLoaderCircle className="animate-spin" /> Loading...
+                </p>
+              )}
+              {!getLoading && "Create Account"}
+            </button>
           </form>
         </div>
         <p className="stiky bottom-0 mt-5 text-xs text-zinc-400">

@@ -3,16 +3,30 @@ import { useState } from "react";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { Button } from "./ui/button";
+import { BiLoaderCircle } from "react-icons/bi";
+import { Toaster, toast } from "sonner";
 
 export default function Login() {
   const [show, setShow] = useState(false);
-  const [error, setError] = useState(false);
   const [errorNik, setErrorNik] = useState(false);
   const [errorPassword, setErrorPassword] = useState(false);
   const [nik, setNik] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
+  const [getLoading, setGetLoading] = useState(false);
+
+  const handleShow = (status) => {
+    setGetLoading(true);
+    setTimeout(() => {
+      if (status == true) {
+        toast.error("NIK/Password Salah!");
+        setGetLoading(false);
+      } else {
+        toast.success("Login Berhasil!");
+        setGetLoading(false);
+      }
+    }, 2000);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,8 +43,11 @@ export default function Login() {
           redirect: false,
         });
         if (res.error) {
-          setError(true);
+          const status = true;
+          await handleShow(status);
         } else {
+          const status = false;
+          await handleShow(status);
           router.push("/dashboard");
         }
       } catch (error) {
@@ -42,6 +59,7 @@ export default function Login() {
   return (
     <>
       <main className="w-full min-h-screen flex flex-col items-center justify-center p-10 sm:px-20 md:px-0 xl:p-0 bg-zinc-10">
+        <Toaster position="top-center" richColors closeButton />
         <div className="p-8 flex flex-col gap-5 border rounded-md w-full md:w-1/2 xl:w-1/3 2xl:w-1/4 bg-white">
           <div className="flex flex-col gap-2">
             <p className="text-2xl font-semibold">Sign In</p>
@@ -51,11 +69,6 @@ export default function Login() {
                 Sign Up
               </Link>
             </p>
-            {error && (
-              <p className="text-xs text-red-500 -mb-5 mt-2 bg-red-100 p-1 rounded-md">
-                NIK/Password salah
-              </p>
-            )}
           </div>
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-3 mt-5">
@@ -108,7 +121,18 @@ export default function Login() {
                 Show Password
               </label>
             </div>
-            <Button type="submit">Sign In</Button>
+            <button
+              disabled={getLoading}
+              className="px-4 py-2 bg-zinc-900 text-white rounded-md disabled:cursor-not-allowed disabled:opacity-50 mt-5 text-center hover:bg-zinc-800"
+            >
+              {getLoading && (
+                <p className="flex items-center justify-center gap-2">
+                  <BiLoaderCircle className="animate-spin"></BiLoaderCircle>{" "}
+                  <span>Loading...</span>
+                </p>
+              )}
+              {!getLoading && "Sign In"}
+            </button>
           </form>
         </div>
         <p className="stiky bottom-0 mt-5 text-xs text-zinc-400">
