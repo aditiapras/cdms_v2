@@ -51,7 +51,7 @@ export default function Request() {
       header: "ID",
       accessorKey: "id",
       cell: (info) => String(info.getValue()),
-      size: 25,
+      maxSize: 25,
     },
     {
       header: "Name",
@@ -64,6 +64,7 @@ export default function Request() {
     {
       header: "Building MC",
       accessorKey: "building_mc",
+      size: 25,
     },
     {
       header: "Type",
@@ -72,10 +73,11 @@ export default function Request() {
     {
       header: "Status",
       accessorKey: "status",
+      size: 25,
       cell: ({ row }) => {
         const request = row.original;
         return (
-          <div className="relative">
+          <div className="relative flex items-center justify-center">
             <p
               className={`${
                 request.status == "Complete"
@@ -83,12 +85,12 @@ export default function Request() {
                   : request.status == "New Request"
                   ? "text-blue-500 bg-blue-200"
                   : "text-amber-500 bg-amber-200"
-              } px-2 py-0.5 rounded-full text-center relative`}
+              } px-2 py-0.5 rounded-full text-center relative w-fit`}
             >
               {request.status}
             </p>
             {request.status == "New Request" && (
-              <p className="absolute top-0 left-0 bg-red-500 w-2.5 h-2.5 rounded-full animate-bounce"></p>
+              <p className="absolute top-0 left-4 bg-red-500 w-2.5 h-2.5 rounded-full animate-bounce"></p>
             )}
           </div>
         );
@@ -135,12 +137,18 @@ export default function Request() {
         };
 
         if (request.status == "Complete") {
-          return <Button disabled>Change Status</Button>;
+          return (
+            <Button disabled size="sm">
+              Change Status
+            </Button>
+          );
         } else {
           return (
             <Dialog>
               <DialogTrigger asChild>
-                <Button>Change Status</Button>
+                <Button size="sm" variant="destructive">
+                  Change Status
+                </Button>
               </DialogTrigger>
               <DialogContent>
                 <form className="flex flex-col gap-5 mt-10">

@@ -16,8 +16,9 @@ import {
 } from "@/components/ui/table";
 import { useMemo, useState } from "react";
 import { BiLastPage, BiFirstPage } from "react-icons/bi";
+import { Button } from "./ui/button";
 
-export default function DataTable({ data: datas, columns }) {
+export default function DataTable({ data: datas, columns, page }) {
   const data = useMemo(() => datas, []);
 
   const [sorting, setSorting] = useState([]);
@@ -33,7 +34,7 @@ export default function DataTable({ data: datas, columns }) {
 
     state: {
       sorting: sorting,
-      //   globalFilter: filter,
+      // globalFilter: filter,
     },
     onSortingChange: setSorting,
     // onGlobalFilterChange: setFilter,
@@ -56,12 +57,12 @@ export default function DataTable({ data: datas, columns }) {
                 <TableHead
                   key={header.id}
                   onClick={header.column.getToggleSortingHandler()}
-                  className="border"
+                  className="border p-0 hover:bg-zinc-200 hover:cursor-pointer"
                   style={{
                     width: header.column.getSize(),
                   }}
                 >
-                  <p className="flex justify-between py-0.5 px-2 hover:cursor-pointer hover:bg-zinc-200 rounded-md">
+                  <p className="flex justify-between px-2">
                     <span>
                       {flexRender(
                         header.column.columnDef.header,
@@ -85,7 +86,12 @@ export default function DataTable({ data: datas, columns }) {
           {table.getRowModel().rows.map((row) => (
             <TableRow key={row.id}>
               {row.getVisibleCells().map((cell) => (
-                <TableCell key={cell.id} className="border">
+                <TableCell
+                  key={cell.id}
+                  className={`border ${
+                    page == "change" ? "p-4" : "px-2 py-1"
+                  }  text-sm`}
+                >
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </TableCell>
               ))}
@@ -94,32 +100,40 @@ export default function DataTable({ data: datas, columns }) {
         </TableBody>
       </Table>
       <div className="flex gap-2">
-        <button
+        <Button
+          size="icon"
+          className="text-2xl"
+          variant="outline"
           onClick={() => table.setPageIndex(0)}
-          className="p-1 rounded-md border hover:border-zinc-900"
         >
           <BiFirstPage />
-        </button>
-        <button
+        </Button>
+        <Button
+          size="icon"
+          className="text-sm"
+          variant="outline"
           onClick={() => table.previousPage()}
-          className="px-2 rounded-md border hover:border-zinc-900 disabled:text-zinc-500 disabled:hover:border-zinc-300 disabled:cursor-not-allowed"
           disabled={!table.getCanPreviousPage()}
         >
           Prev
-        </button>
-        <button
+        </Button>
+        <Button
+          size="icon"
+          className="text-sm"
+          variant="outline"
           onClick={() => table.nextPage()}
-          className="px-2 rounded-md border hover:border-zinc-900 disabled:text-zinc-500 disabled:hover:border-zinc-300 disabled:cursor-not-allowed"
           disabled={!table.getCanNextPage()}
         >
           Next
-        </button>
-        <button
+        </Button>
+        <Button
+          size="icon"
+          className="text-2xl"
+          variant="outline"
           onClick={() => table.setPageIndex(table.getPageCount() - 1)}
-          className="px-2 rounded-md border hover:border-zinc-900"
         >
           <BiLastPage />
-        </button>
+        </Button>
       </div>
     </div>
   );

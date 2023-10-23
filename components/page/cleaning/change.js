@@ -4,6 +4,7 @@ import Spinner from "../../ui/spinner";
 import DataTable from "../../data-table";
 
 export default function Change() {
+  const status = "change";
   const {
     data: change,
     error,
@@ -20,6 +21,7 @@ export default function Change() {
       header: "ID",
       accessorKey: "id",
       cell: (info) => String(info.getValue()),
+      maxSize: 40,
     },
     {
       header: "ID Drum",
@@ -53,5 +55,5 @@ export default function Change() {
     },
   ];
 
-  return <DataTable data={change} columns={columns} />;
+  return <DataTable data={change} columns={columns} page={status} />;
 }

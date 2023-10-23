@@ -2,13 +2,18 @@
 import { useFetch } from "@/lib/fetcher/fetchHelper";
 import Spinner from "../../ui/spinner";
 import { Separator } from "@/components/ui/separator";
-import EachDrum from "./eachDrum";
-import { useState } from "react";
 import { drumPhase } from "@/lib/global-state/globalState";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { BsPlusLg } from "react-icons/bs";
 import Link from "next/link";
+import React from "react";
+import moment from "moment-timezone";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card";
 
 export default function CcDrum() {
   const phase = drumPhase((state) => state.default);
@@ -83,9 +88,87 @@ export default function CcDrum() {
                     drum.type == "PCR" &&
                     drum.phase == phase
                 )
-                .map((drum) => (
-                  <EachDrum key={drum.id_drum} id_drum={drum.id_drum} />
-                ))}
+                .map((drum) => {
+                  const age =
+                    drum.status == "use"
+                      ? moment()
+                          .local()
+                          .diff(moment(drum.date_naik).local(), "days") +
+                        drum.age
+                      : drum.age;
+                  return (
+                    <div key={drum.id_drum}>
+                      {drum.status == "unuse" ? (
+                        <Link
+                          href={`/dashboard/drums/${drum.id_drum}`}
+                          className={`${
+                            age > 0 && age < 10
+                              ? "bg-green-200 hover:bg-green-300"
+                              : age >= 10 && age <= 14
+                              ? "bg-amber-200 hover:bg-amber-300"
+                              : age > 14
+                              ? "bg-red-200 hover:bg-red-300"
+                              : "bg-white hover:bg-zinc-100"
+                          } flex justify-between h-12 items-center p-2 border rounded-md text-xs transition duration-200`}
+                        >
+                          <p className="">{drum.id_drum}</p>
+                          <p className="">{age}</p>
+                        </Link>
+                      ) : (
+                        <HoverCard openDelay={200} closeDelay={0}>
+                          <HoverCardTrigger asChild>
+                            <div
+                              className={`${
+                                age > -1 && age < 10
+                                  ? "bg-green-200 hover:bg-green-300"
+                                  : age >= 10 && age <= 14
+                                  ? "bg-amber-200 hover:bg-amber-300"
+                                  : age > 14
+                                  ? "bg-red-200 hover:bg-red-300"
+                                  : "bg-white hover:bg-zinc-100"
+                              } relative flex justify-between h-12 items-center p-2 border rounded-md text-xs transition duration-200`}
+                            >
+                              <p className="absolute top-0 left-1 text-[7px] text-green-500 animate-pulse">
+                                ◉
+                              </p>
+                              <p className="">{drum.id_drum}</p>
+                              <p className="">{age}</p>
+                            </div>
+                          </HoverCardTrigger>
+                          <HoverCardContent className="w-72" align="start">
+                            <div className="flex justify-between space-x-4">
+                              <div className="space-y-1">
+                                <h4 className="text-sm font-semibold">
+                                  {drum.id_drum}
+                                </h4>
+                                <p className="text-xs">
+                                  Mesin Building:{" "}
+                                  <span className="font-semibold">
+                                    {drum.building_mc}
+                                  </span>
+                                </p>
+                                <p className="text-xs">
+                                  Umur Pakai:{" "}
+                                  <span className="font-semibold">
+                                    {age} Hari
+                                  </span>
+                                </p>
+                                <div className="flex items-center pt-2">
+                                  <span className="text-xs text-muted-foreground">
+                                    Tanggal Naik:{" "}
+                                    {moment(drum.date_naik).format(
+                                      "DD MMMM YYYY HH:mm"
+                                    )}
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          </HoverCardContent>
+                        </HoverCard>
+                      )}
+                    </div>
+                  );
+                })}
             </div>
           </div>
         ))}
@@ -104,9 +187,87 @@ export default function CcDrum() {
                     drum.type == "LTR" &&
                     drum.phase == phase
                 )
-                .map((drum) => (
-                  <EachDrum key={drum.id_drum} id_drum={drum.id_drum} />
-                ))}
+                .map((drum) => {
+                  const age =
+                    drum.status == "use"
+                      ? moment()
+                          .local()
+                          .diff(moment(drum.date_naik).local(), "days") +
+                        drum.age
+                      : drum.age;
+                  return (
+                    <div key={drum.id_drum}>
+                      {drum.status == "unuse" ? (
+                        <Link
+                          href={`/dashboard/drums/${drum.id_drum}`}
+                          className={`${
+                            age > 0 && age < 10
+                              ? "bg-green-200 hover:bg-green-300"
+                              : age >= 10 && age <= 14
+                              ? "bg-amber-200 hover:bg-amber-300"
+                              : age > 14
+                              ? "bg-red-200 hover:bg-red-300"
+                              : "bg-white hover:bg-zinc-100"
+                          } flex justify-between h-12 items-center p-2 border rounded-md text-xs transition duration-200`}
+                        >
+                          <p className="">{drum.id_drum}</p>
+                          <p className="">{age}</p>
+                        </Link>
+                      ) : (
+                        <HoverCard openDelay={200} closeDelay={0}>
+                          <HoverCardTrigger asChild>
+                            <div
+                              className={`${
+                                age > -1 && age < 10
+                                  ? "bg-green-200 hover:bg-green-300"
+                                  : age >= 10 && age <= 14
+                                  ? "bg-amber-200 hover:bg-amber-300"
+                                  : age > 14
+                                  ? "bg-red-200 hover:bg-red-300"
+                                  : "bg-white hover:bg-zinc-100"
+                              } relative flex justify-between h-12 items-center p-2 border rounded-md text-xs transition duration-200`}
+                            >
+                              <p className="absolute top-0 left-1 text-[7px] text-green-500 animate-pulse">
+                                ◉
+                              </p>
+                              <p className="">{drum.id_drum}</p>
+                              <p className="">{age}</p>
+                            </div>
+                          </HoverCardTrigger>
+                          <HoverCardContent className="w-72" align="start">
+                            <div className="flex justify-between space-x-4">
+                              <div className="space-y-1">
+                                <h4 className="text-sm font-semibold">
+                                  {drum.id_drum}
+                                </h4>
+                                <p className="text-xs">
+                                  Mesin Building:{" "}
+                                  <span className="font-semibold">
+                                    {drum.building_mc}
+                                  </span>
+                                </p>
+                                <p className="text-xs">
+                                  Umur Pakai:{" "}
+                                  <span className="font-semibold">
+                                    {age} Hari
+                                  </span>
+                                </p>
+                                <div className="flex items-center pt-2">
+                                  <span className="text-xs text-muted-foreground">
+                                    Tanggal Naik:{" "}
+                                    {moment(drum.date_naik).format(
+                                      "DD MMMM YYYY HH:mm"
+                                    )}
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          </HoverCardContent>
+                        </HoverCard>
+                      )}
+                    </div>
+                  );
+                })}
             </div>
           </div>
         ))}

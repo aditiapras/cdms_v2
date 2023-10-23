@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import AddForm from "./form";
 import Link from "next/link";
-
+export const dynamic = "force-dynamic";
 export default async function AddCCDrum() {
   const session = getServerSession(authOptions);
 

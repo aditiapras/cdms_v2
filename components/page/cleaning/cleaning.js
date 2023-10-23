@@ -8,6 +8,8 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import moment from "moment-timezone";
 import Spinner from "../../ui/spinner";
 import DataTable from "../../data-table";
+import { Button } from "@/components/ui/button";
+import { BsEyeFill } from "react-icons/bs";
 
 export default function Cleaning() {
   const {
@@ -24,6 +26,7 @@ export default function Cleaning() {
       header: "ID",
       accessorKey: "cleaning_id",
       cell: (info) => String(info.getValue()),
+      maxSize: 25,
     },
     {
       header: "ID Drum",
@@ -45,10 +48,10 @@ export default function Cleaning() {
         const part = row.original;
         return (
           <Popover>
-            <PopoverTrigger>
-              <button className="px-5 py-0.5 border rounded-md hover:border-zinc-800">
-                View
-              </button>
+            <PopoverTrigger asChild>
+              <Button size="sm" className="flex gap-2 items-center">
+                View <BsEyeFill />
+              </Button>
             </PopoverTrigger>
             <PopoverContent align="start" className="w-[400px]">
               <ScrollArea className="h-[350px] w-full">
