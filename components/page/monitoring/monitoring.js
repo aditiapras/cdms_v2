@@ -10,7 +10,7 @@ export default function Monitoring() {
   const phase1 = machinePhase((state) => state.phase1);
   const phase2 = machinePhase((state) => state.phase2);
 
-  const { data, error, isLoading } = useFetch(
+  const { data, error, isLoading, mutate } = useFetch(
     `${process.env.NEXT_PUBLIC_API_URL}/monitoring`
   );
 

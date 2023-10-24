@@ -30,6 +30,8 @@ export default function AddForm() {
     { value: "18", label: "18 Inch" },
     { value: "19", label: "19 Inch" },
     { value: "20", label: "20 Inch" },
+    { value: "21", label: "21 Inch" },
+    { value: "22", label: "22 Inch" },
   ];
 
   const types = [

@@ -22,7 +22,7 @@ export default function UnmountCC({ params }) {
 
   const router = useRouter();
 
-  const { data, error, isLoading } = useFetch(
+  const { data, error, isLoading, mutate } = useFetch(
     `${process.env.NEXT_PUBLIC_API_URL}/drums?id=${params.idDrum}`
   );
 
@@ -71,6 +71,7 @@ export default function UnmountCC({ params }) {
     const turunMesin = await unmountMachine(data);
     console.log(turunMesin);
     postHistory(history);
+    await mutate();
     router.push("/dashboard/monitoring");
   };
 
