@@ -217,7 +217,11 @@ export default function CleaningCC({ params }) {
                     type="radio"
                     name="rbcondition"
                     id={"rbok"}
-                    onChange={() => setRbCondition("OK")}
+                    onChange={() => {
+                      setRbCondition("OK");
+                      setRbChange("No");
+                      setRbQty(0);
+                    }}
                     className="hidden"
                   />
                   <label htmlFor="rbok" className="w-10">
@@ -233,7 +237,10 @@ export default function CleaningCC({ params }) {
                     type="radio"
                     name="rbcondition"
                     id="rbng"
-                    onChange={() => setRbCondition("NG")}
+                    onChange={() => {
+                      setRbCondition("NG");
+                      setRbChange("Yes");
+                    }}
                     className="hidden"
                   />
                   <label htmlFor="rbng" className="w-10">
@@ -251,7 +258,7 @@ export default function CleaningCC({ params }) {
                     type="radio"
                     name="rbchange"
                     id="rbchange"
-                    onChange={() => setRbChange("Yes")}
+                    // onChange={() => setRbChange("Yes")}
                     className="hidden"
                   />
                   <label htmlFor="rbchange" className="w-10">
@@ -267,7 +274,7 @@ export default function CleaningCC({ params }) {
                     type="radio"
                     name="rbchange"
                     id="rbnochange"
-                    onChange={() => setRbChange("No")}
+                    // onChange={() => setRbChange("No")}
                     className="hidden"
                   />
                   <label htmlFor="rbnochange" className="w-10">
@@ -278,6 +285,7 @@ export default function CleaningCC({ params }) {
               <div className="flex gap-2 items-center justify-center">
                 <button
                   type="button"
+                  disabled={rbCondition === "OK" ? true : false}
                   onClick={() =>
                     rbQty <= 0 ? setRbQty(0) : setRbQty(rbQty - 1)
                   }
@@ -287,8 +295,9 @@ export default function CleaningCC({ params }) {
                 <p className="text-center text-lg font-semibold w-5">{rbQty}</p>
                 <button
                   type="button"
+                  disabled={rbCondition === "OK" ? true : false}
                   onClick={() =>
-                    rbQty >= 5 ? setRbQty(5) : setRbQty(rbQty + 1)
+                    rbQty >= 1 ? setRbQty(1) : setRbQty(rbQty + 1)
                   }
                 >
                   <PlusCircle className="w-5 h-5 active:scale-90" />
@@ -308,7 +317,11 @@ export default function CleaningCC({ params }) {
                     type="radio"
                     name="sfcondition"
                     id={"sfok"}
-                    onChange={() => setSfCondition("OK")}
+                    onChange={() => {
+                      setSfCondition("OK");
+                      setSfChange("No");
+                      setSfQty(0);
+                    }}
                     className="hidden"
                   />
                   <label htmlFor="sfok" className="w-10">
@@ -324,7 +337,10 @@ export default function CleaningCC({ params }) {
                     type="radio"
                     name="sfcondition"
                     id="sfng"
-                    onChange={() => setSfCondition("NG")}
+                    onChange={() => {
+                      setSfCondition("NG");
+                      setSfChange("Yes");
+                    }}
                     className="hidden"
                   />
                   <label htmlFor="sfng" className="w-10">
@@ -342,7 +358,7 @@ export default function CleaningCC({ params }) {
                     type="radio"
                     name="sfchange"
                     id="sfchange"
-                    onChange={() => setSfChange("Yes")}
+                    // onChange={() => setSfChange("Yes")}
                     className="hidden"
                   />
                   <label htmlFor="sfchange" className="w-10">
@@ -358,7 +374,7 @@ export default function CleaningCC({ params }) {
                     type="radio"
                     name="sfchange"
                     id="sfnochange"
-                    onChange={() => setSfChange("No")}
+                    // onChange={() => setSfChange("No")}
                     className="hidden"
                   />
                   <label htmlFor="sfnochange" className="w-10">
@@ -369,6 +385,7 @@ export default function CleaningCC({ params }) {
               <div className="flex gap-2 items-center justify-center">
                 <button
                   type="button"
+                  disabled={sfCondition === "OK" ? true : false}
                   onClick={() =>
                     sfQty <= 0 ? setSfQty(0) : setSfQty(sfQty - 1)
                   }
@@ -378,8 +395,9 @@ export default function CleaningCC({ params }) {
                 <p className="text-center text-lg font-semibold w-5">{sfQty}</p>
                 <button
                   type="button"
+                  disabled={sfCondition === "OK" ? true : false}
                   onClick={() =>
-                    sfQty >= 5 ? setSfQty(5) : setSfQty(sfQty + 1)
+                    sfQty >= 2 ? setSfQty(2) : setSfQty(sfQty + 1)
                   }
                 >
                   <PlusCircle className="w-5 h-5 active:scale-90" />
@@ -399,7 +417,11 @@ export default function CleaningCC({ params }) {
                     type="radio"
                     name="blcondition"
                     id={"blok"}
-                    onChange={() => setBlCondition("OK")}
+                    onChange={() => {
+                      setBlCondition("OK");
+                      setBlChange("No");
+                      setBlQty(0);
+                    }}
                     className="hidden"
                   />
                   <label htmlFor="blok" className="w-10">
@@ -415,7 +437,11 @@ export default function CleaningCC({ params }) {
                     type="radio"
                     name="blcondition"
                     id="blng"
-                    onChange={() => setBlCondition("NG")}
+                    onChange={() => {
+                      setBlCondition("NG");
+                      setBlChange("No");
+                      setBlQty(0);
+                    }}
                     className="hidden"
                   />
                   <label htmlFor="blng" className="w-10">
@@ -433,7 +459,7 @@ export default function CleaningCC({ params }) {
                     type="radio"
                     name="blchange"
                     id="blchange"
-                    onChange={() => setBlChange("Yes")}
+                    // onChange={() => setBlChange("Yes")}
                     className="hidden"
                   />
                   <label htmlFor="blchange" className="w-10">
@@ -449,7 +475,7 @@ export default function CleaningCC({ params }) {
                     type="radio"
                     name="blchange"
                     id="blnochange"
-                    onChange={() => setBlChange("No")}
+                    // onChange={() => setBlChange("No")}
                     className="hidden"
                   />
                   <label htmlFor="blnochange" className="w-10">
@@ -457,9 +483,10 @@ export default function CleaningCC({ params }) {
                   </label>
                 </div>
               </div>
-              <div className="flex gap-2 items-center justify-center">
+              {/* <div className="flex gap-2 items-center justify-center">
                 <button
                   type="button"
+                  disabled
                   onClick={() =>
                     blQty <= 0 ? setBlQty(0) : setBlQty(blQty - 1)
                   }
@@ -469,13 +496,14 @@ export default function CleaningCC({ params }) {
                 <p className="text-center text-lg font-semibold w-5">{blQty}</p>
                 <button
                   type="button"
+                  disabled
                   onClick={() =>
-                    blQty >= 5 ? setBlQty(5) : setBlQty(blQty + 1)
+                    blQty >= 1 ? setBlQty(1) : setBlQty(blQty + 1)
                   }
                 >
                   <PlusCircle className="w-5 h-5 active:scale-90" />
                 </button>
-              </div>
+              </div> */}
             </div>
 
             <div className="grid grid-cols-4 text-center">
@@ -490,7 +518,11 @@ export default function CleaningCC({ params }) {
                     type="radio"
                     name="shfcondition"
                     id={"shfok"}
-                    onChange={() => setShfCondition("OK")}
+                    onChange={() => {
+                      setShfCondition("OK");
+                      setShfChange("No");
+                      setShfQty(0);
+                    }}
                     className="hidden"
                   />
                   <label htmlFor="shfok" className="w-10">
@@ -506,7 +538,10 @@ export default function CleaningCC({ params }) {
                     type="radio"
                     name="shfcondition"
                     id="shfng"
-                    onChange={() => setShfCondition("NG")}
+                    onChange={() => {
+                      setShfCondition("NG");
+                      setShfChange("Yes");
+                    }}
                     className="hidden"
                   />
                   <label htmlFor="shfng" className="w-10">
@@ -524,7 +559,7 @@ export default function CleaningCC({ params }) {
                     type="radio"
                     name="shfchange"
                     id="shfchange"
-                    onChange={() => setShfChange("Yes")}
+                    // onChange={() => setShfChange("Yes")}
                     className="hidden"
                   />
                   <label htmlFor="shfchange" className="w-10">
@@ -540,7 +575,7 @@ export default function CleaningCC({ params }) {
                     type="radio"
                     name="shfchange"
                     id="shfnochange"
-                    onChange={() => setShfChange("No")}
+                    // onChange={() => setShfChange("No")}
                     className="hidden"
                   />
                   <label htmlFor="shfnochange" className="w-10">
@@ -548,22 +583,33 @@ export default function CleaningCC({ params }) {
                   </label>
                 </div>
               </div>
-              <div className="flex gap-2 items-center justify-center">
+              <div
+                className={`flex gap-2 items-center justify-center ${
+                  shfCondition === "OK" ? "hidden" : ""
+                }`}
+              >
                 <button
                   type="button"
+                  disabled={shfCondition === "OK" ? true : false}
                   onClick={() =>
                     shfQty <= 0 ? setShfQty(0) : setShfQty(shfQty - 1)
                   }
                 >
                   <MinusCircle className="w-5 h-5 active:scale-90" />
                 </button>
-                <p className="text-center text-lg font-semibold w-5">
-                  {shfQty}
-                </p>
+                <input
+                  type="text"
+                  value={shfQty}
+                  onChange={(e) => setShfQty(e.target.value)}
+                  className="w-14 border p-1.5 rounded-md font-medium"
+                />
                 <button
                   type="button"
+                  disabled={shfCondition === "OK" ? true : false}
                   onClick={() =>
-                    shfQty >= 5 ? setShfQty(5) : setShfQty(shfQty + 1)
+                    shfQty >= 150
+                      ? setShfQty(150)
+                      : setShfQty(Number(shfQty) + 1)
                   }
                 >
                   <PlusCircle className="w-5 h-5 active:scale-90" />
@@ -583,7 +629,11 @@ export default function CleaningCC({ params }) {
                     type="radio"
                     name="tucondition"
                     id={"tuok"}
-                    onChange={() => setTuCondition("OK")}
+                    onChange={() => {
+                      setTuCondition("OK");
+                      setTuChange("No");
+                      setTuQty(0);
+                    }}
                     className="hidden"
                   />
                   <label htmlFor="tuok" className="w-10">
@@ -599,7 +649,10 @@ export default function CleaningCC({ params }) {
                     type="radio"
                     name="tucondition"
                     id="tung"
-                    onChange={() => setTuCondition("NG")}
+                    onChange={() => {
+                      setTuCondition("NG");
+                      setTuChange("Yes");
+                    }}
                     className="hidden"
                   />
                   <label htmlFor="tung" className="w-10">
@@ -617,7 +670,7 @@ export default function CleaningCC({ params }) {
                     type="radio"
                     name="tuchange"
                     id="tuchange"
-                    onChange={() => setTuChange("Yes")}
+                    // onChange={() => setTuChange("Yes")}
                     className="hidden"
                   />
                   <label htmlFor="tuchange" className="w-10">
@@ -633,7 +686,7 @@ export default function CleaningCC({ params }) {
                     type="radio"
                     name="tuchange"
                     id="tunochange"
-                    onChange={() => setTuChange("No")}
+                    // onChange={() => setTuChange("No")}
                     className="hidden"
                   />
                   <label htmlFor="tunochange" className="w-10">
@@ -644,6 +697,7 @@ export default function CleaningCC({ params }) {
               <div className="flex gap-2 items-center justify-center">
                 <button
                   type="button"
+                  disabled={tuCondition === "OK" ? true : false}
                   onClick={() =>
                     tuQty <= 0 ? setTuQty(0) : setTuQty(tuQty - 1)
                   }
@@ -653,6 +707,7 @@ export default function CleaningCC({ params }) {
                 <p className="text-center text-lg font-semibold w-5">{tuQty}</p>
                 <button
                   type="button"
+                  disabled={tuCondition === "OK" ? true : false}
                   onClick={() =>
                     tuQty >= 5 ? setTuQty(5) : setTuQty(tuQty + 1)
                   }
@@ -674,7 +729,11 @@ export default function CleaningCC({ params }) {
                     type="radio"
                     name="cvcondition"
                     id={"cvok"}
-                    onChange={() => setCvCondition("OK")}
+                    onChange={() => {
+                      setCvCondition("OK");
+                      setCvChange("No");
+                      setCvQty(0);
+                    }}
                     className="hidden"
                   />
                   <label htmlFor="cvok" className="w-10">
@@ -690,7 +749,10 @@ export default function CleaningCC({ params }) {
                     type="radio"
                     name="cvcondition"
                     id="cvng"
-                    onChange={() => setCvCondition("NG")}
+                    onChange={() => {
+                      setCvCondition("NG");
+                      setCvChange("Yes");
+                    }}
                     className="hidden"
                   />
                   <label htmlFor="cvng" className="w-10">
@@ -708,7 +770,7 @@ export default function CleaningCC({ params }) {
                     type="radio"
                     name="cvchange"
                     id="cvchange"
-                    onChange={() => setCvChange("Yes")}
+                    // onChange={() => setCvChange("Yes")}
                     className="hidden"
                   />
                   <label htmlFor="cvchange" className="w-10">
@@ -724,7 +786,7 @@ export default function CleaningCC({ params }) {
                     type="radio"
                     name="cvchange"
                     id="cvnochange"
-                    onChange={() => setCvChange("No")}
+                    // onChange={() => setCvChange("No")}
                     className="hidden"
                   />
                   <label htmlFor="cvnochange" className="w-10">
@@ -735,6 +797,7 @@ export default function CleaningCC({ params }) {
               <div className="flex gap-2 items-center justify-center">
                 <button
                   type="button"
+                  disabled={cvCondition === "OK" ? true : false}
                   onClick={() =>
                     cvQty <= 0 ? setCvQty(0) : setCvQty(cvQty - 1)
                   }
@@ -744,6 +807,7 @@ export default function CleaningCC({ params }) {
                 <p className="text-center text-lg font-semibold w-5">{cvQty}</p>
                 <button
                   type="button"
+                  disabled={cvCondition === "OK" ? true : false}
                   onClick={() =>
                     cvQty >= 5 ? setCvQty(5) : setCvQty(cvQty + 1)
                   }
@@ -765,7 +829,11 @@ export default function CleaningCC({ params }) {
                     type="radio"
                     name="sorcondition"
                     id={"sorok"}
-                    onChange={() => setSorCondition("OK")}
+                    onChange={() => {
+                      setSorCondition("OK");
+                      setSorChange("No");
+                      setSorQty(0);
+                    }}
                     className="hidden"
                   />
                   <label htmlFor="sorok" className="w-10">
@@ -781,7 +849,10 @@ export default function CleaningCC({ params }) {
                     type="radio"
                     name="sorcondition"
                     id="sorng"
-                    onChange={() => setSorCondition("NG")}
+                    onChange={() => {
+                      setSorCondition("NG");
+                      setSorChange("Yes");
+                    }}
                     className="hidden"
                   />
                   <label htmlFor="sorng" className="w-10">
@@ -799,7 +870,7 @@ export default function CleaningCC({ params }) {
                     type="radio"
                     name="sorchange"
                     id="sorchange"
-                    onChange={() => setSorChange("Yes")}
+                    // onChange={() => setSorChange("Yes")}
                     className="hidden"
                   />
                   <label htmlFor="sorchange" className="w-10">
@@ -815,7 +886,7 @@ export default function CleaningCC({ params }) {
                     type="radio"
                     name="sorchange"
                     id="sornochange"
-                    onChange={() => setSorChange("No")}
+                    // onChange={() => setSorChange("No")}
                     className="hidden"
                   />
                   <label htmlFor="sornochange" className="w-10">
@@ -826,6 +897,7 @@ export default function CleaningCC({ params }) {
               <div className="flex gap-2 items-center justify-center">
                 <button
                   type="button"
+                  disabled={sorCondition === "OK" ? true : false}
                   onClick={() =>
                     sorQty <= 0 ? setSorQty(0) : setSorQty(sorQty - 1)
                   }
@@ -837,6 +909,7 @@ export default function CleaningCC({ params }) {
                 </p>
                 <button
                   type="button"
+                  disabled={sorCondition === "OK" ? true : false}
                   onClick={() =>
                     sorQty >= 5 ? setSorQty(5) : setSorQty(sorQty + 1)
                   }
@@ -858,7 +931,11 @@ export default function CleaningCC({ params }) {
                     type="radio"
                     name="bdcondition"
                     id={"bdok"}
-                    onChange={() => setBdCondition("OK")}
+                    onChange={() => {
+                      setBdCondition("OK");
+                      setBdChange("No");
+                      setBdQty(0);
+                    }}
                     className="hidden"
                   />
                   <label htmlFor="bdok" className="w-10">
@@ -874,7 +951,10 @@ export default function CleaningCC({ params }) {
                     type="radio"
                     name="bdcondition"
                     id="bdng"
-                    onChange={() => setBdCondition("NG")}
+                    onChange={() => {
+                      setBdCondition("NG");
+                      setBdChange("Yes");
+                    }}
                     className="hidden"
                   />
                   <label htmlFor="bdng" className="w-10">
@@ -892,7 +972,7 @@ export default function CleaningCC({ params }) {
                     type="radio"
                     name="bdchange"
                     id="bdchange"
-                    onChange={() => setBdChange("Yes")}
+                    // onChange={() => setBdChange("Yes")}
                     className="hidden"
                   />
                   <label htmlFor="bdchange" className="w-10">
@@ -908,7 +988,7 @@ export default function CleaningCC({ params }) {
                     type="radio"
                     name="bdchange"
                     id="bdnochange"
-                    onChange={() => setBdChange("No")}
+                    // onChange={() => setBdChange("No")}
                     className="hidden"
                   />
                   <label htmlFor="bdnochange" className="w-10">
@@ -919,6 +999,7 @@ export default function CleaningCC({ params }) {
               <div className="flex gap-2 items-center justify-center">
                 <button
                   type="button"
+                  disabled={bdCondition === "OK" ? true : false}
                   onClick={() =>
                     bdQty <= 0 ? setBdQty(0) : setBdQty(bdQty - 1)
                   }
@@ -928,8 +1009,9 @@ export default function CleaningCC({ params }) {
                 <p className="text-center text-lg font-semibold w-5">{bdQty}</p>
                 <button
                   type="button"
+                  disabled={bdCondition === "OK" ? true : false}
                   onClick={() =>
-                    bdQty >= 5 ? setBdQty(5) : setBdQty(bdQty + 1)
+                    bdQty >= 8 ? setBdQty(8) : setBdQty(bdQty + 1)
                   }
                 >
                   <PlusCircle className="w-5 h-5 active:scale-90" />
@@ -949,7 +1031,11 @@ export default function CleaningCC({ params }) {
                     type="radio"
                     name="cscondition"
                     id={"csok"}
-                    onChange={() => setCsCondition("OK")}
+                    onChange={() => {
+                      setCsCondition("OK");
+                      setCsChange("No");
+                      setCsQty(0);
+                    }}
                     className="hidden"
                   />
                   <label htmlFor="csok" className="w-10">
@@ -965,7 +1051,10 @@ export default function CleaningCC({ params }) {
                     type="radio"
                     name="cscondition"
                     id="csng"
-                    onChange={() => setCsCondition("NG")}
+                    onChange={() => {
+                      setCsCondition("NG");
+                      setCsChange("Yes");
+                    }}
                     className="hidden"
                   />
                   <label htmlFor="csng" className="w-10">
@@ -983,7 +1072,7 @@ export default function CleaningCC({ params }) {
                     type="radio"
                     name="cschange"
                     id="cschange"
-                    onChange={() => setCsChange("Yes")}
+                    // onChange={() => setCsChange("Yes")}
                     className="hidden"
                   />
                   <label htmlFor="cschange" className="w-10">
@@ -999,7 +1088,7 @@ export default function CleaningCC({ params }) {
                     type="radio"
                     name="cschange"
                     id="csnochange"
-                    onChange={() => setCsChange("No")}
+                    // onChange={() => setCsChange("No")}
                     className="hidden"
                   />
                   <label htmlFor="csnochange" className="w-10">
@@ -1010,6 +1099,7 @@ export default function CleaningCC({ params }) {
               <div className="flex gap-2 items-center justify-center">
                 <button
                   type="button"
+                  disabled={csCondition === "OK" ? true : false}
                   onClick={() =>
                     csQty <= 0 ? setCsQty(0) : setCsQty(csQty - 1)
                   }
@@ -1019,8 +1109,9 @@ export default function CleaningCC({ params }) {
                 <p className="text-center text-lg font-semibold w-5">{csQty}</p>
                 <button
                   type="button"
+                  disabled={csCondition === "OK" ? true : false}
                   onClick={() =>
-                    csQty >= 5 ? setCsQty(5) : setCsQty(csQty + 1)
+                    csQty >= 8 ? setCsQty(8) : setCsQty(csQty + 1)
                   }
                 >
                   <PlusCircle className="h-5 w-5 active:scale-90 transition" />
@@ -1040,7 +1131,11 @@ export default function CleaningCC({ params }) {
                     type="radio"
                     name="tscondition"
                     id={"tsok"}
-                    onChange={() => setTsCondition("OK")}
+                    onChange={() => {
+                      setTsCondition("OK");
+                      setTsChange("No");
+                      setTsQty(0);
+                    }}
                     className="hidden"
                   />
                   <label htmlFor="tsok" className="w-10">
@@ -1056,7 +1151,10 @@ export default function CleaningCC({ params }) {
                     type="radio"
                     name="tscondition"
                     id="tsng"
-                    onChange={() => setTsCondition("NG")}
+                    onChange={() => {
+                      setTsCondition("NG");
+                      setTsChange("Yes");
+                    }}
                     className="hidden"
                   />
                   <label htmlFor="tsng" className="w-10">
@@ -1074,7 +1172,7 @@ export default function CleaningCC({ params }) {
                     type="radio"
                     name="tschange"
                     id="tschange"
-                    onChange={() => setTsChange("Yes")}
+                    // onChange={() => setTsChange("Yes")}
                     className="hidden"
                   />
                   <label htmlFor="tschange" className="w-10">
@@ -1090,7 +1188,7 @@ export default function CleaningCC({ params }) {
                     type="radio"
                     name="tschange"
                     id="tsnochange"
-                    onChange={() => setTsChange("No")}
+                    // onChange={() => setTsChange("No")}
                     className="hidden"
                   />
                   <label htmlFor="tsnochange" className="w-10">
@@ -1101,6 +1199,7 @@ export default function CleaningCC({ params }) {
               <div className="flex gap-2 items-center justify-center">
                 <button
                   type="button"
+                  disabled={tsCondition === "OK" ? true : false}
                   onClick={() =>
                     tsQty <= 0 ? setTsQty(0) : setTsQty(tsQty - 1)
                   }
@@ -1110,8 +1209,9 @@ export default function CleaningCC({ params }) {
                 <p className="text-center text-lg font-semibold w-5">{tsQty}</p>
                 <button
                   type="button"
+                  disabled={tsCondition === "OK" ? true : false}
                   onClick={() =>
-                    tsQty >= 5 ? setTsQty(5) : setTsQty(tsQty + 1)
+                    tsQty >= 8 ? setTsQty(8) : setTsQty(tsQty + 1)
                   }
                 >
                   <PlusCircle className="h-5 w-5 active:scale-90 transition" />

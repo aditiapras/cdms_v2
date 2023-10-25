@@ -16,8 +16,10 @@ import { Label } from "@/components/ui/label";
 import Spinner from "../../ui/spinner";
 import { useState } from "react";
 import axios from "axios";
+import { useSWRConfig } from "swr";
 
 export default function RequestCleaning() {
+  const { mutate } = useSWRConfig();
   const [drum, setDrum] = useState("");
   const [team, setTeam] = useState("");
   const [type, setType] = useState("Cleaning C/C Drum");
@@ -44,7 +46,7 @@ export default function RequestCleaning() {
         data: query,
       }).then((res) => res.data);
       console.log(await data);
-      window.location.reload();
+      mutate(`${process.env.NEXT_PUBLIC_API_URL}/requests`);
     }
   };
 

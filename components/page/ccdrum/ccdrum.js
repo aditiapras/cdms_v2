@@ -146,7 +146,7 @@ export default function CcDrum() {
                                     : "bg-white hover:bg-zinc-100"
                                 } relative flex justify-between h-12 items-center p-2 border rounded-md text-xs transition duration-200`}
                               >
-                                <p className="absolute top-0 left-1 text-[7px] text-green-500 animate-pulse">
+                                <p className="absolute -top-1 -left-1 text-[20px] text-emerald-500 animate-pulse">
                                   ◉
                                 </p>
                                 <p className="">{drum.id_drum}</p>

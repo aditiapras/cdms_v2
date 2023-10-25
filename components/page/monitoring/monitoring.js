@@ -19,21 +19,48 @@ export default function Monitoring() {
 
   return (
     <main className="flex flex-col h-full">
-      <div className="flex items-center gap-5 w-full px-5 py-2 border-b bg-zinc-50">
-        <p className="font-semibold text-xl">Monitoring</p>
-        <Button onClick={phase1} variant={phase == "Phase 1" ? "" : "outline"}>
-          Phase 1
-        </Button>
-        <Button onClick={phase2} variant={phase == "Phase 2" ? "" : "outline"}>
-          Phase 2
-        </Button>
+      <div className="flex items-center justify-between w-full px-5 py-2 border-b bg-zinc-50">
+        <div className="flex items-center gap-5">
+          <p className="font-semibold text-xl">Monitoring</p>
+          <Button
+            onClick={phase1}
+            variant={phase == "Phase 1" ? "" : "outline"}
+          >
+            Phase 1
+          </Button>
+          <Button
+            onClick={phase2}
+            variant={phase == "Phase 2" ? "" : "outline"}
+          >
+            Phase 2
+          </Button>
+        </div>
+        <p className="px-2 bg-emerald-500 text-white font-medium">OE Size</p>
       </div>
       <div className="grid grid-cols-5 gap-5 w-full p-5 bg-zinc-100 h-full">
         {data
           .filter((drum) => drum.phase == phase)
           .map((drum) => (
             <div key={drum.building_mc} className="flex flex-col gap-2">
-              <p className="font-semibold">{drum.building_mc}</p>
+              <p
+                className={`${
+                  drum.building_mc == "H1305" ||
+                  drum.building_mc == "H1502" ||
+                  drum.building_mc == "H1601" ||
+                  drum.building_mc == "H1603" ||
+                  drum.building_mc == "H1701" ||
+                  drum.building_mc == "H1703" ||
+                  drum.building_mc == "H1704" ||
+                  drum.building_mc == "H1705" ||
+                  drum.building_mc == "H1801" ||
+                  drum.building_mc == "H1804" ||
+                  drum.building_mc == "H1805"
+                    ? "bg-emerald-500 font-medium w-fit px-2 text-white"
+                    : "font-semibold"
+                }`}
+              >
+                {drum.building_mc}
+              </p>
               <div className="flex flex-col gap-1">
                 <CarcassDrum drum={drum.id_left} mesin={drum.building_mc} />
                 <CarcassDrum drum={drum.id_right} mesin={drum.building_mc} />

@@ -18,11 +18,9 @@ import { useMemo, useState } from "react";
 import { BiLastPage, BiFirstPage } from "react-icons/bi";
 import { Button } from "./ui/button";
 
-export default function DataTable({ data: datas, columns, page }) {
-  const data = useMemo(() => datas, []);
-
+export default function DataTable({ data, columns, page }) {
   const [sorting, setSorting] = useState([]);
-  const [filter, setFilter] = useState([]);
+  const [filter, setFilter] = useState("");
 
   const table = useReactTable({
     data,
@@ -34,21 +32,23 @@ export default function DataTable({ data: datas, columns, page }) {
 
     state: {
       sorting: sorting,
-      // globalFilter: filter,
+      globalFilter: filter,
     },
     onSortingChange: setSorting,
-    // onGlobalFilterChange: setFilter,
+    onGlobalFilterChange: setFilter,
   });
 
   return (
     <div className="flex flex-col gap-5">
-      {/* <input
-        type="text"
-        placeholder="Search"
-        className="w-1/5 p-2 rounded-md border"
-        value={filter}
-        onChange={(e) => setFilter(e.target.value)}
-      /> */}
+      <div>
+        <input
+          type="text"
+          placeholder="Search"
+          className="w-1/5 p-2 rounded-md border"
+          value={filter}
+          onChange={(e) => setFilter(e.target.value)}
+        />
+      </div>
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
