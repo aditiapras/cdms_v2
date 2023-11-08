@@ -55,6 +55,7 @@ model Cleaning {
   id_drum       String   @db.VarChar(20)
   pic           String   @db.VarChar(255)
   date_cleaning DateTime @db.DateTime()
+  workgroup     String?  @db.VarChar(10)
   parts         Part[]
 }
 

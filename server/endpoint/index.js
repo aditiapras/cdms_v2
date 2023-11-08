@@ -183,13 +183,14 @@ module.exports = endpoint = async (req, res, method, route) => {
         res.json(data);
       }
     } else if (method == "POST") {
-      const { id_drum, parts, pic } = req.body;
+      const { id_drum, parts, pic, workgroup } = req.body;
       const date_cleaning = moment().toISOString();
       const cleaning = await prisma.cleaning.create({
         data: {
           id_drum,
           date_cleaning,
           pic,
+          workgroup,
           parts: {
             create: parts,
           },
