@@ -73,6 +73,7 @@ export default function InputNaik() {
           id_right: "",
           building_mc: data.building_mc,
           status: "use",
+          tub_width: data.tub,
         };
         postMonitoring(query);
         console.log("Unuse");
@@ -82,6 +83,7 @@ export default function InputNaik() {
           id_right: monitoring.id_right,
           building_mc: data.building_mc,
           status: "use",
+          // tub_width: data.tub,
         };
         postMonitoring(query);
         console.log("Left");
@@ -91,6 +93,7 @@ export default function InputNaik() {
           id_right: data.id_drum,
           building_mc: data.building_mc,
           status: "use",
+          // tub_width: data.tub,
         };
         postMonitoring(query);
         console.log("Right");

@@ -14,11 +14,20 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
-
+import { useRouter, useSearchParams } from "next/navigation";
+import { useState } from "react";
 export default function CcDrum() {
-  const phase = drumPhase((state) => state.default);
-  const phase1 = drumPhase((state) => state.phase1);
-  const phase2 = drumPhase((state) => state.phase2);
+  // const phase = drumPhase((state) => state.default);
+  // const phase1 = drumPhase((state) => state.phase1);
+  // const phase2 = drumPhase((state) => state.phase2);
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const params =
+    !searchParams.get("phase") || searchParams.get("phase") == "1"
+      ? "Phase 1"
+      : "Phase 2";
+
+  const [phase, setPhase] = useState(params);
 
   const { data, error, isLoading } = useFetch(
     `${process.env.NEXT_PUBLIC_API_URL}/drums`
@@ -57,14 +66,20 @@ export default function CcDrum() {
         <div className="flex gap-3 bg-zinc-50 py-0.5 sticky top-[90px] z-10 items-center">
           <p className="text-xl font-semibold mr-3">Carcass Drum</p>
           <Button
+            onClick={() => {
+              setPhase(router.replace("/dashboard/drums"));
+              params == "Phase 1" ? setPhase("Phase 2") : setPhase("Phase 1");
+            }}
             variant={phase == "Phase 1" ? "" : "outline"}
-            onClick={phase1}
           >
             Phase 1
           </Button>
           <Button
+            onClick={() => {
+              setPhase(router.replace("/dashboard/drums?phase=2"));
+              params == "Phase 1" ? setPhase("Phase 2") : setPhase("Phase 1");
+            }}
             variant={phase == "Phase 2" ? "" : "outline"}
-            onClick={phase2}
           >
             Phase 2
           </Button>

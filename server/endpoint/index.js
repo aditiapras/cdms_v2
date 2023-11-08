@@ -145,7 +145,7 @@ module.exports = endpoint = async (req, res, method, route) => {
         res.json(monitoring);
       }
     } else if (method == "PUT") {
-      const { building_mc, status, id_left, id_right } = req.body;
+      const { building_mc, status, id_left, id_right, tub_width } = req.body;
       const monitoring = await prisma.monitoring.update({
         where: {
           building_mc: building_mc,
@@ -154,6 +154,7 @@ module.exports = endpoint = async (req, res, method, route) => {
           status: status,
           id_left: id_left,
           id_right: id_right,
+          tub_width: tub_width,
         },
       });
       res.json(monitoring);

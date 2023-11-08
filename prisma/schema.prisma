@@ -23,6 +23,7 @@ model Monitoring {
   id_right    String? @db.VarChar(20)
   status      String? @db.VarChar(20)
   phase       String  @db.VarChar(20)
+  tub_width   Int?
 }
 
 model Drum {
