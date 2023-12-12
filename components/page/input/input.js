@@ -43,6 +43,7 @@ export default function InputNaik() {
       tub: queryValue.tub.value,
       status: "use",
       method: "naik",
+      position: queryValue.position.value,
     };
 
     const drumStatus = await getDrumStatus(data);
@@ -75,15 +76,14 @@ export default function InputNaik() {
           status: "use",
           tub_width: data.tub,
         };
+        console.log(query);
         postMonitoring(query);
-        console.log("Unuse");
       } else if (monitoring.id_left == "" && monitoring.id_right != "") {
         const query = {
           id_left: data.id_drum,
           id_right: monitoring.id_right,
           building_mc: data.building_mc,
           status: "use",
-          // tub_width: data.tub,
         };
         postMonitoring(query);
         console.log("Left");
@@ -93,11 +93,11 @@ export default function InputNaik() {
           id_right: data.id_drum,
           building_mc: data.building_mc,
           status: "use",
-          // tub_width: data.tub,
         };
         postMonitoring(query);
         console.log("Right");
       } else {
+        toast.error("something went wrong");
         console.log("Use");
       }
     };
@@ -177,6 +177,11 @@ export default function InputNaik() {
     return { value: tub.tub_width, label: tub.tub_width };
   });
 
+  const pos = [
+    { value: "Left", label: "Left" },
+    { value: "Right", label: "Right" },
+  ];
+
   return (
     <main className="flex flex-col items-center justify-center h-full py-7 bg-zinc-100">
       <Toaster position="bottom-right" richColors closeButton expand={true} />
@@ -236,6 +241,14 @@ export default function InputNaik() {
             control={control}
             rules={{ required: true }}
             render={({ field }) => <Select required options={tub} {...field} />}
+          />
+
+          <label htmlFor="position">Position</label>
+          <Controller
+            name="position"
+            control={control}
+            rules={{ required: true }}
+            render={({ field }) => <Select required options={pos} {...field} />}
           />
 
           <Button className="w-full mt-10" type="submit">

@@ -129,20 +129,39 @@ export default function CcDrum() {
                             .diff(moment(drum.date_naik).local(), "days") +
                           drum.age
                         : drum.age;
+                    const mesin = drum.building_mc;
                     return (
                       <div key={drum.id_drum}>
                         {drum.status == "unuse" ? (
                           <Link
                             href={`/dashboard/drums/${drum.id_drum}`}
                             className={`${
-                              age > 0 && age < 10
+                              mesin == "H1305" ||
+                              mesin == "H1502" ||
+                              mesin == "H1601" ||
+                              mesin == "H1603" ||
+                              mesin == "H1701" ||
+                              mesin == "H1703" ||
+                              mesin == "H1704" ||
+                              mesin == "H1705" ||
+                              mesin == "H1801" ||
+                              mesin == "H1804" ||
+                              mesin == "H1805"
+                                ? age > 0 && age < 10
+                                  ? "bg-green-200 hover:bg-green-300"
+                                  : age >= 10 && age <= 14
+                                  ? "bg-amber-200 hover:bg-amber-300"
+                                  : age > 14
+                                  ? "bg-red-200 hover:bg-red-300"
+                                  : "bg-zinc-50 hover:bg-zinc-100"
+                                : age > 0 && age < 25
                                 ? "bg-green-200 hover:bg-green-300"
-                                : age >= 10 && age <= 14
+                                : age >= 25 && age <= 30
                                 ? "bg-amber-200 hover:bg-amber-300"
-                                : age > 14
+                                : age > 30
                                 ? "bg-red-200 hover:bg-red-300"
-                                : "bg-white hover:bg-zinc-100"
-                            } flex justify-between h-12 items-center p-2 border rounded-md text-xs transition duration-200`}
+                                : "bg-zinc-50 hover:bg-zinc-100"
+                            } flex relative items-center justify-between border text-xs border-zinc-300 rounded-lg px-5 md:px-2 h-12 transition duration-200`}
                           >
                             <p className="">{drum.id_drum}</p>
                             <p className="">{age}</p>
@@ -152,14 +171,32 @@ export default function CcDrum() {
                             <HoverCardTrigger asChild>
                               <div
                                 className={`${
-                                  age > -1 && age < 10
+                                  mesin == "H1305" ||
+                                  mesin == "H1502" ||
+                                  mesin == "H1601" ||
+                                  mesin == "H1603" ||
+                                  mesin == "H1701" ||
+                                  mesin == "H1703" ||
+                                  mesin == "H1704" ||
+                                  mesin == "H1705" ||
+                                  mesin == "H1801" ||
+                                  mesin == "H1804" ||
+                                  mesin == "H1805"
+                                    ? age < 10 && drum.status == "use"
+                                      ? "bg-green-200 hover:bg-green-300"
+                                      : age >= 10 && age <= 14
+                                      ? "bg-amber-200 hover:bg-amber-300"
+                                      : age > 14
+                                      ? "bg-red-200 hover:bg-red-300"
+                                      : "bg-zinc-50 hover:bg-zinc-100"
+                                    : age < 25 && drum.status == "use"
                                     ? "bg-green-200 hover:bg-green-300"
-                                    : age >= 10 && age <= 14
+                                    : age >= 25 && age <= 30
                                     ? "bg-amber-200 hover:bg-amber-300"
-                                    : age > 14
+                                    : age > 30
                                     ? "bg-red-200 hover:bg-red-300"
-                                    : "bg-white hover:bg-zinc-100"
-                                } relative flex justify-between h-12 items-center p-2 border rounded-md text-xs transition duration-200`}
+                                    : "bg-zinc-50 hover:bg-zinc-100"
+                                } flex relative items-center justify-between border text-xs border-zinc-300 rounded-lg px-5 md:px-2 h-12 transition duration-200`}
                               >
                                 <p className="absolute -top-1 -left-1 text-[20px] text-emerald-500 animate-pulse">
                                   ◉
@@ -209,6 +246,7 @@ export default function CcDrum() {
       </div>
       <Separator />
       <p className="text-2xl font-semibold">LTR</p>
+
       <div
         className={`grid ${
           phase == "Phase 1" ? "grid-cols-8 gap-5" : "grid-cols-10 gap-5"
@@ -233,22 +271,53 @@ export default function CcDrum() {
                           .diff(moment(drum.date_naik).local(), "days") +
                         drum.age
                       : drum.age;
+                  const mesin = drum.building_mc;
                   return (
                     <div key={drum.id_drum}>
                       {drum.status == "unuse" ? (
                         <Link
                           href={`/dashboard/drums/${drum.id_drum}`}
                           className={`${
-                            age > 0 && age < 10
+                            mesin == "H1305" ||
+                            mesin == "H1502" ||
+                            mesin == "H1601" ||
+                            mesin == "H1603" ||
+                            mesin == "H1701" ||
+                            mesin == "H1703" ||
+                            mesin == "H1704" ||
+                            mesin == "H1705" ||
+                            mesin == "H1801" ||
+                            mesin == "H1804" ||
+                            mesin == "H1805"
+                              ? age > 0 && age < 10
+                                ? "bg-green-200 hover:bg-green-300"
+                                : age >= 10 && age <= 14
+                                ? "bg-amber-200 hover:bg-amber-300"
+                                : age > 14
+                                ? "bg-red-200 hover:bg-red-300"
+                                : "bg-zinc-50 hover:bg-zinc-100"
+                              : age > 0 && age < 25
                               ? "bg-green-200 hover:bg-green-300"
-                              : age >= 10 && age <= 14
+                              : age >= 25 && age <= 30
                               ? "bg-amber-200 hover:bg-amber-300"
-                              : age > 14
+                              : age > 30
                               ? "bg-red-200 hover:bg-red-300"
-                              : "bg-white hover:bg-zinc-100"
-                          } flex justify-between h-12 items-center p-2 border rounded-md text-xs transition duration-200`}
+                              : "bg-zinc-50 hover:bg-zinc-100"
+                          } flex relative items-center justify-between border text-xs border-zinc-300 rounded-lg px-5 md:px-2 h-12 transition duration-200`}
                         >
-                          <p className="">{drum.id_drum}</p>
+                          <p className="flex items-center gap-2">
+                            {drum.id_drum}
+                            {drum.id_drum == "I16L-H30B-19" ||
+                            drum.id_drum == "I16L-H30B-21" ||
+                            drum.id_drum == "I16L-H30B-07" ||
+                            drum.id_drum == "I16L-H30B-08" ? (
+                              <span className="text-[0.6rem] rounded-full px-2 bg-zinc-700 text-zinc-50">
+                                OE
+                              </span>
+                            ) : (
+                              ""
+                            )}
+                          </p>
                           <p className="">{age}</p>
                         </Link>
                       ) : (
@@ -256,19 +325,49 @@ export default function CcDrum() {
                           <HoverCardTrigger asChild>
                             <div
                               className={`${
-                                age > -1 && age < 10
+                                mesin == "H1305" ||
+                                mesin == "H1502" ||
+                                mesin == "H1601" ||
+                                mesin == "H1603" ||
+                                mesin == "H1701" ||
+                                mesin == "H1703" ||
+                                mesin == "H1704" ||
+                                mesin == "H1705" ||
+                                mesin == "H1801" ||
+                                mesin == "H1804" ||
+                                mesin == "H1805"
+                                  ? age < 10 && drum.status == "use"
+                                    ? "bg-green-200 hover:bg-green-300"
+                                    : age >= 10 && age <= 14
+                                    ? "bg-amber-200 hover:bg-amber-300"
+                                    : age > 14
+                                    ? "bg-red-200 hover:bg-red-300"
+                                    : "bg-zinc-50 hover:bg-zinc-100"
+                                  : age < 25 && drum.status == "use"
                                   ? "bg-green-200 hover:bg-green-300"
-                                  : age >= 10 && age <= 14
+                                  : age >= 25 && age <= 30
                                   ? "bg-amber-200 hover:bg-amber-300"
-                                  : age > 14
+                                  : age > 30
                                   ? "bg-red-200 hover:bg-red-300"
-                                  : "bg-white hover:bg-zinc-100"
-                              } relative flex justify-between h-12 items-center p-2 border rounded-md text-xs transition duration-200`}
+                                  : "bg-zinc-50 hover:bg-zinc-100"
+                              } flex relative items-center justify-between border text-xs border-zinc-300 rounded-lg px-5 md:px-2 h-12 transition duration-200`}
                             >
-                              <p className="absolute top-0 left-1 text-[7px] text-green-500 animate-pulse">
+                              <p className="absolute -top-1 -left-1 text-[20px] text-emerald-500 animate-pulse">
                                 ◉
                               </p>
-                              <p className="">{drum.id_drum}</p>
+                              <p className="flex items-center gap-2">
+                                {drum.id_drum}
+                                {drum.id_drum == "I16L-H30B-19" ||
+                                drum.id_drum == "I16L-H30B-21" ||
+                                drum.id_drum == "I16L-H30B-07" ||
+                                drum.id_drum == "I16L-H30B-08" ? (
+                                  <span className="text-[0.6rem] rounded-full px-2 bg-zinc-700 text-zinc-50">
+                                    OE
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
+                              </p>
                               <p className="">{age}</p>
                             </div>
                           </HoverCardTrigger>

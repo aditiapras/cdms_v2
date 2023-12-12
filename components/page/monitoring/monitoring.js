@@ -48,7 +48,7 @@ export default function Monitoring() {
           </Button>
         </div>
         <p className="px-2 bg-emerald-500 text-white font-medium rounded-full">
-          OE Size
+          OE Machine
         </p>
       </div>
       <div className="grid grid-cols-5 gap-10 w-full p-5 bg-zinc-100 h-full">

@@ -78,6 +78,7 @@ model History {
   reason      String?  @db.VarChar(255)
   type        String   @db.VarChar(20)
   PIC         String   @db.VarChar(20)
+  position    String?  @db.VarChar(20)
 }
 
 model Request {

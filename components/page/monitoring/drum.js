@@ -35,14 +35,42 @@ export default function CarcassDrum({ drum, mesin }) {
         <AlertDialog>
           <AlertDialogTrigger
             className={`${
-              age < 10
+              mesin == "H1305" ||
+              mesin == "H1502" ||
+              mesin == "H1601" ||
+              mesin == "H1603" ||
+              mesin == "H1701" ||
+              mesin == "H1703" ||
+              mesin == "H1704" ||
+              mesin == "H1705" ||
+              mesin == "H1801" ||
+              mesin == "H1804" ||
+              mesin == "H1805"
+                ? age < 10
+                  ? "bg-green-200 hover:bg-green-300"
+                  : age >= 10 && age <= 14
+                  ? "bg-amber-200 hover:bg-amber-300"
+                  : "bg-red-200 hover:bg-red-300"
+                : age < 25
                 ? "bg-green-200 hover:bg-green-300"
-                : age >= 10 && age <= 14
+                : age >= 25 && age <= 30
                 ? "bg-amber-200 hover:bg-amber-300"
                 : "bg-red-200 hover:bg-red-300"
             } flex items-center justify-between border border-zinc-300 rounded-lg px-5 md:px-2 h-12 transition duration-200 text-sm`}
           >
-            <p>{drum}</p>
+            <p className="flex items-center gap-2">
+              {drum}
+              {drum == "I16L-H30B-19" ||
+              drum == "I16L-H30B-21" ||
+              drum == "I16L-H30B-07" ||
+              drum == "I16L-H30B-08" ? (
+                <span className="text-xs px-2 rounded-full bg-zinc-700 text-zinc-50">
+                  OE
+                </span>
+              ) : (
+                ""
+              )}
+            </p>
             <p>{age}</p>
           </AlertDialogTrigger>
           <AlertDialogContent>

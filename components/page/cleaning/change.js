@@ -4,15 +4,23 @@ import Spinner from "../../ui/spinner";
 import DataTable from "../../data-table";
 
 export default function Change() {
-  const status = "change";
   const {
     data: change,
     error,
     isLoading,
   } = useFetch(`${process.env.NEXT_PUBLIC_API_URL}/histories`);
 
+  const { data: machine } = useFetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/machines`
+  );
+  const { data: drums } = useFetch(`${process.env.NEXT_PUBLIC_API_URL}/drums`);
+
   if (error) return <div>failed to load</div>;
   if (isLoading) return <Spinner />;
+
+  const id_drums = drums?.map((drum) => {
+    return { value: drum.id_drum, label: drum.id_drum };
+  });
 
   /** @type import("@tanstack/react-table").ColumnDef<any> */
 
@@ -55,5 +63,13 @@ export default function Change() {
     },
   ];
 
-  return <DataTable data={change} columns={columns} page={status} />;
+  return (
+    <DataTable
+      data={change}
+      columns={columns}
+      page="change"
+      drums={id_drums}
+      machine={machine}
+    />
+  );
 }

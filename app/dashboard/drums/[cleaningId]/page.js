@@ -44,6 +44,8 @@ export default function CleaningCC({ params }) {
   const [tsChange, setTsChange] = useState("");
   const [tsCondition, setTsCondition] = useState("");
   const [tsQty, setTsQty] = useState(0);
+  const [vcChange, setVcChange] = useState("");
+  const [vcCondition, setVcCondition] = useState("");
 
   const { register, handleSubmit, control, reset } = useForm();
 
@@ -89,13 +91,16 @@ export default function CleaningCC({ params }) {
       !csChange ||
       !csCondition ||
       !tsChange ||
-      !tsCondition
+      !tsCondition ||
+      !vcChange ||
+      !vcCondition
     ) {
       toast.error("Data belum lengkap");
     } else {
       const data = {
         id_drum: res.id_drum,
         pic: session?.user?.username,
+        workgroup: session?.user?.workgroup,
         parts: [
           {
             name: "Rubber Band",
@@ -156,6 +161,12 @@ export default function CleaningCC({ params }) {
             qty: tsQty,
             change: tsChange,
             status: tsCondition,
+          },
+          {
+            name: "Vaccum Check",
+            qty: 0,
+            change: vcChange,
+            status: vcCondition,
           },
         ],
       };
@@ -1216,6 +1227,82 @@ export default function CleaningCC({ params }) {
                 >
                   <PlusCircle className="h-5 w-5 active:scale-90 transition" />
                 </button>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-4 text-center">
+              <input type="text" value={"Vacuum Check"} readOnly />
+              <div className="flex gap-2 items-center justify-center">
+                <div
+                  className={`flex gap-2 items-center p-2 border rounded-md font-semibold ${
+                    vcCondition === "OK" ? "bg-green-600 text-white" : ""
+                  }`}
+                >
+                  <input
+                    type="radio"
+                    name="vccondition"
+                    id={"vcok"}
+                    onChange={() => {
+                      setVcCondition("OK");
+                      setVcChange("No");
+                    }}
+                    className="hidden"
+                  />
+                  <label htmlFor="vcok" className="w-10">
+                    OK
+                  </label>
+                </div>
+                <div
+                  className={`flex gap-2 items-center p-2 border rounded-md font-semibold ${
+                    vcCondition === "NG" ? "bg-red-600 text-white" : ""
+                  }`}
+                >
+                  <input
+                    type="radio"
+                    name="vccondition"
+                    id="vcng"
+                    onChange={() => {
+                      setVcCondition("NG");
+                      setVcChange("Yes");
+                    }}
+                    className="hidden"
+                  />
+                  <label htmlFor="vcng" className="w-10">
+                    NG
+                  </label>
+                </div>
+              </div>
+              <div className="flex gap-2 items-center justify-center">
+                <div
+                  className={`flex gap-2 items-center border rounded-md font-semibold p-2 ${
+                    vcChange === "Yes" ? "bg-blue-600 text-white" : ""
+                  }`}
+                >
+                  <input
+                    type="radio"
+                    name="vcchange"
+                    id="vcchange"
+                    className="hidden"
+                  />
+                  <label htmlFor="vcchange" className="w-10">
+                    Yes
+                  </label>
+                </div>
+                <div
+                  className={`flex gap-2 items-center border rounded-md font-semibold p-2 ${
+                    vcChange === "No" ? "bg-blue-600 text-white" : ""
+                  }`}
+                >
+                  <input
+                    type="radio"
+                    name="vcchange"
+                    id="vcnochange"
+                    className="hidden"
+                  />
+                  <label htmlFor="vcnochange" className="w-10">
+                    No
+                  </label>
+                </div>
               </div>
             </div>
 

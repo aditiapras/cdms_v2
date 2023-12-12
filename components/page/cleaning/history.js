@@ -15,7 +15,11 @@ export default function HistoryCleaning() {
         <p className="font-semibold text-xl">History</p>
         <Button
           onClick={() => router.replace("/dashboard/history")}
-          variant={!params.get("page") ? "" : "outline"}
+          variant={
+            !params.get("page") || params.get("page") == "change"
+              ? ""
+              : "outline"
+          }
         >
           Change
         </Button>
@@ -27,7 +31,7 @@ export default function HistoryCleaning() {
         </Button>
       </div>
       <div className="w-full flex flex-col p-5">
-        {!params.get("page") && <Change />}
+        {(!params.get("page") || params.get("page") == "change") && <Change />}
         {params.get("page") == "cleaning" && <Cleaning />}
       </div>
     </div>

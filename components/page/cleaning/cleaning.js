@@ -36,18 +36,27 @@ export default function Cleaning() {
     {
       header: "PIC",
       accessorKey: "pic",
-      size: 150,
+      size: 200,
     },
     {
       header: "Workgroup",
-      size: 80,
+      size: 75,
       accessorKey: "workgroup",
     },
     {
       header: "Date",
       accessorKey: "date_cleaning",
-      size: 200,
-      cell: (info) => moment(info.getValue()).format("DD MMMM YYYY HH:mm"),
+      size: 250,
+      cell: (info) => moment(info.getValue()).format("DD MMM YYYY HH:mm"),
+    },
+    {
+      header: "Vacuum Check",
+      accessorKey: "parts",
+      size: 75,
+      cell: ({ row }) => {
+        const part = row.original;
+        return part?.parts[10]?.status;
+      },
     },
     {
       header: "Rubber Band",
@@ -180,23 +189,25 @@ export default function Cleaning() {
                   <p className="font-semibold text-xl">C/C Drum Part</p>
                   <p className="font-semibold text-lg">{part.id_drum}</p>
                   <div className="grid grid-cols-2 gap-3 text-sm">
-                    {part.parts.map((part) => (
-                      <div key={part.id} className="flex flex-col gap-1">
-                        <p className="font-semibold">{part.name}</p>
-                        <div className="flex gap-3">
-                          <div className="flex flex-col gap-1">
-                            <p>Status</p>
-                            <p>Change</p>
-                            <p>Change Qty.</p>
-                          </div>
-                          <div className="flex flex-col gap-1">
-                            <p>: {part.status}</p>
-                            <p>: {part.change}</p>
-                            <p>: {String(part.qty)} ea</p>
+                    {part.parts
+                      .map((part) => (
+                        <div key={part.id} className="flex flex-col gap-1">
+                          <p className="font-semibold">{part.name}</p>
+                          <div className="flex gap-3">
+                            <div className="flex flex-col gap-1">
+                              <p>Status</p>
+                              <p>Change</p>
+                              <p>Change Qty.</p>
+                            </div>
+                            <div className="flex flex-col gap-1">
+                              <p>: {part.status}</p>
+                              <p>: {part.change}</p>
+                              <p>: {String(part.qty)} ea</p>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    ))}
+                      ))
+                      .slice(0, 10)}
                   </div>
                 </div>
               </ScrollArea>
@@ -207,5 +218,5 @@ export default function Cleaning() {
     },
   ];
 
-  return <DataTable data={cleaning} columns={columns} />;
+  return <DataTable data={cleaning} columns={columns} page="cleaning" />;
 }
